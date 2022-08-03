@@ -1,25 +1,23 @@
+import * as CONSTANTS  from './constants'
 import axios from 'axios'
-import * as CONSTANTS from './constants'
-
-export function fetchingTableDevice() {
+export function fetchingTableApiSource(){
     return dispatch => {
-        dispatch(fetchingLoadingAction)
-        axios.get('http://localhost:4000/api/v1/device/list')
+        dispatch(fetchingLoadingAction())
+        axios.get("http://localhost:4000/api/v1/api-source/list")
             .then(res => {
-                console.log(res)
                 dispatch(fetchingAction(res))
             })
     }
 }
 export function fetchingAction(response) {
     return {
-        type: CONSTANTS.FETCHING_LIST_DEVICE,
+        type: CONSTANTS.FETCHING_LIST_APISOURCE,
         payload: response
     }
 }
 export function fetchingLoadingAction() {
     return {
-        type: CONSTANTS.FETCHING_LIST_DEVICE_LOADING,
+        type: CONSTANTS.FETCHING_LIST_APISOURCE_LOADDING,
         payload: {}
     }
 }

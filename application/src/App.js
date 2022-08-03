@@ -8,11 +8,11 @@ import { ViewReport } from './feautures/ViewReport';
 import { Monitor } from './feautures/Monitor';
 import { Auth } from './layouts/Auth';
 import { Login } from './feautures/Auth/view/Login';
-import { DataSource } from './feautures/ConfigDataSource/view/Detail';
+import { ApiSource } from './feautures/ApiSource/view/Detail';
 import { Device } from './feautures/Devices/view/Detail';
-import { User } from './feautures/Administrator/components/User';
 import { ConfigReport } from './feautures/ConfigReport/view/Detail';
-
+import { TagPage } from './feautures/Tag/view/Detail';
+import { DataHubPage } from './feautures/DataHub/view';
 function App() {
   return (
     <Provider store={store}>
@@ -22,10 +22,11 @@ function App() {
           <Route path='/home' element={<AppLayout><Home /></AppLayout>} />
           <Route path='/plant/:id' element={<AppLayout><ViewReport /></AppLayout>} />
           <Route path='/monitor' element={<AppLayout><Monitor /></AppLayout>} />
-          <Route path='/config/data-source' element={<AppLayout><DataSource /></AppLayout>} />
+          <Route path='/api-source' element={<AppLayout><ApiSource /></AppLayout>} />
           <Route path='/devices' element={<AppLayout><Device/></AppLayout>} />
           <Route path='/config/report' element={<AppLayout><ConfigReport /></AppLayout>} />
-          <Route path='/config/user' element={<AppLayout><User /></AppLayout>} />
+          <Route path='/tags' element={<AppLayout><TagPage /></AppLayout>} />
+          <Route path='/data-hub' element={<AppLayout><DataHubPage /></AppLayout>} />
         </Routes>
       </Router>
     </Provider>

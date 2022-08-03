@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import President from './President'
-import { fetchingTableDataSource } from '../../redux/actions'
+import { fetchingTableTag } from '../../redux'
 import { connect } from 'react-redux'
 
 class Container extends Component {
@@ -10,21 +10,20 @@ class Container extends Component {
     )
   }
   componentDidMount() {
-    this.props.fetchingTableDataSource()
+    this.props.fetchingTableTag()
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchingTableDataSource: () => {
-      dispatch(fetchingTableDataSource())
+    fetchingTableTag: () => {
+      dispatch(fetchingTableTag())
     }
   }
 }
 function mapStateToProps(state) {
   return {
-    dataSources: state.configDataSource
+    tags: state.tag
   }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

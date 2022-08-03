@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {
-    UploadOutlined,
+    ApiOutlined,
     DashboardOutlined,
     VideoCameraOutlined,
     UserOutlined,
-    LogoutOutlined
+    LogoutOutlined,
+    PieChartOutlined
 } from '@ant-design/icons';
 import {AntAvatar} from "../AntAvatar";
 import { Layout, Menu } from 'antd';
@@ -19,9 +20,9 @@ export default class President extends Component {
                     mode="inline"
                     defaultSelectedKeys={['1']}
                 >
-                    <Menu.Item icon={<DashboardOutlined />} key="1">
-                        API CLOUD
-                        <Link to="/home" />
+                    <Menu.Item icon={<ApiOutlined/>} key="1">
+                        API - SOURCE
+                        <Link to="/api-source" />
                     </Menu.Item>
                     <Menu.Item icon={<DashboardOutlined />} key="2">
                         DEVICE
@@ -29,11 +30,15 @@ export default class President extends Component {
                     </Menu.Item>
                     <Menu.Item icon={<VideoCameraOutlined />} key="3">
                         TAG
+                        <Link to="/tags" />
+                    </Menu.Item>
+                    <Menu.Item icon={<VideoCameraOutlined />} key="4">
+                        MONITOR - TAG
                         <Link to="/monitor" />
                     </Menu.Item>
-                    <Menu.Item icon={<VideoCameraOutlined />} key="3">
-                        MONITOR
-                        <Link to="/monitor" />
+                    <Menu.Item icon={<PieChartOutlined />} key="5">
+                        DATA - HUB
+                        <Link to="/data-hub" />
                     </Menu.Item>
                 </Menu>
                 <Menu
@@ -48,7 +53,7 @@ export default class President extends Component {
                         key="account"
                         icon={<UserOutlined />}
                         title={
-                            <span><UserOutlined /> Account</span>
+                            <span><UserOutlined />Account</span>
                         }
                     >
                         <Menu.Item
@@ -60,7 +65,7 @@ export default class President extends Component {
                                 src={''}
                             />}
                         >
-                            {'Admin'}
+                            {'Nguyễn Hữu Bảo'}
                         </Menu.Item>
                         <Menu.Item
                             className="account-logout"

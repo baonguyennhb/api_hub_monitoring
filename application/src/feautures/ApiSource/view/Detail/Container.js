@@ -1,28 +1,29 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { fetchPlantsOverview } from '../redux/actions'
 import President from './President'
+import { fetchingTableApiSource } from '../../redux/actions'
+import { connect } from 'react-redux'
+
 class Container extends Component {
   render() {
     return (
-      <President {...this.props} />
+      <President {...this.props}/>
     )
   }
-
   componentDidMount() {
-    this.props.fetchPlantsOverview(1060);
+    this.props.fetchingTableApiSource()
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPlantsOverview: (siteId) => {
-      dispatch(fetchPlantsOverview(siteId));
-    },
+    fetchingTableApiSource: () => {
+      dispatch(fetchingTableApiSource())
+    }
   }
 }
 function mapStateToProps(state) {
   return {
-    plants: state.plant
+    apiSources: state.apiSource
   }
 }
 

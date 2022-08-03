@@ -4,11 +4,11 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
 export default class President extends Component {
     render() {
-        const { data } = this.props.dataSources.list
+        const { data } = this.props?.apiSources.list
         const dataSource = data.map((value, index) => {
             return {
                 index: index + 1,
-                key: value.dataSrcId,
+                key: value.id,
                 ...value
             }
         })
@@ -19,24 +19,14 @@ export default class President extends Component {
                 key: 'index',
             },
             {
-                title: 'DATA SOURCE NAME',
-                dataIndex: 'dataSrcName',
-                key: 'dataSrcName',
+                title: 'END POINT',
+                dataIndex: 'endpoint',
+                key: 'endpoint',
             },
             {
-                title: 'SERVER',
-                dataIndex: 'server',
-                key: 'server',
-            },
-            {
-                title: 'PLANT',
-                dataIndex: 'plant',
-                key: 'plant',
-            },
-            {
-                title: 'USER',
-                dataIndex: 'dataSrcUser',
-                key: 'dataSrcUser',
+                title: 'DESCRIPTION',
+                dataIndex: 'description',
+                key: 'description',
             },
             {
                 title: 'ACTION',
@@ -58,15 +48,16 @@ export default class President extends Component {
         ];
         return (
             <div className='main-container'>
-                <div className='title-page'>DATASOURCE MANAGERMENT</div>
+                <div className='title-page'>API - SOURCE MANAGERMENT</div>
                 <div className='container-table'>
-                    <Tooltip color={'green'} title={'Insert Plant'}>
-                        <Button className={'btn-create'}>
-                            +
+                    <Tooltip color={'blue'} title={'Create New Api Source'}>
+                        <Button type='primary'>
+                            Create
                         </Button>
                     </Tooltip>
-
-                    <Table columns={columns} dataSource={dataSource} />
+                    <div className='table'>
+                        <Table columns={columns} dataSource={dataSource} />
+                    </div>
                 </div>
             </div>
         )

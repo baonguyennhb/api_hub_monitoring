@@ -4,7 +4,7 @@ import initState from './initState'
 export function reducer(state = initState, action) {
     let payload = action.payload
     switch (action.type) {
-        case CONSTANTS.FETCHING_LIST_DATASOURCE:
+        case CONSTANTS.FETCHING_LIST_APISOURCE:
             let data = payload.data !== undefined ? payload.data : []
             return {
                 ...state,
@@ -13,7 +13,7 @@ export function reducer(state = initState, action) {
                     loading: false
                 }
             }
-        case CONSTANTS.FETCHING_LIST_DATASOURCE_LOADDING:
+        case CONSTANTS.FETCHING_LIST_APISOURCE_LOADDING:
             return {
                 ...state,
                 list: {

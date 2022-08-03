@@ -4,7 +4,7 @@ export default class President extends Component {
     render() {
         return (
             <div className='main-container'>
-                <div className='title-page'>MONITOR TAGS</div>
+                <div className='title-page'>DATA - HUB CONFIGURATION</div>
             </div>
         )
     }

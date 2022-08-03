@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import President from './President'
-import { fetchingTablePlant } from '../../redux'
+import { fetchingTableDevice } from '../../redux'
 import { connect } from 'react-redux'
 
 class Container extends Component {
@@ -10,20 +10,20 @@ class Container extends Component {
     )
   }
   componentDidMount() {
-    this.props.fetchingTablePlant()
+    this.props.fetchingTableDevice()
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchingTablePlant: () => {
-      dispatch(fetchingTablePlant())
+    fetchingTableDevice: () => {
+      dispatch(fetchingTableDevice())
     }
   }
 }
 function mapStateToProps(state) {
   return {
-    plants: state.configPlant
+    devices: state.device
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

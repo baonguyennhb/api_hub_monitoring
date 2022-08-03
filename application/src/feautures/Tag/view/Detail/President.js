@@ -1,13 +1,14 @@
-import { Table, Button, Space, Tooltip } from 'antd';
+import { Table, Button, Space, Tooltip, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
+const { Search } = Input;
 export default class President extends Component {
   showDeleteConfirm = () => {
 
   }
   render() {
-    const { data } = this.props?.devices.list
+    const { data } = this.props?.tags.list
     const dataSource = data.map((value, index) => {
       return {
         index: index + 1,
@@ -27,14 +28,9 @@ export default class President extends Component {
         key: 'serial',
       },
       {
-        title: 'MODEL',
-        dataIndex: 'model',
-        key: 'model',
-      },
-      {
-        title: 'DESCRIPTION',
-        dataIndex: 'description',
-        key: 'description',
+        title: 'TAG NAME',
+        dataIndex: 'name',
+        key: 'name',
       },
       {
         title: 'ACTION',
@@ -56,13 +52,14 @@ export default class President extends Component {
     ];
     return (
       <div className='main-container'>
-        <div className='title-page'>DEVICE MANAGERMENT</div>
+        <div className='title-page'>TAG MANAGERMENT</div>
         <div className='container-table'>
-          <Tooltip color={'blue'} title={'Create New Device'}>
-            <Button type='primary' className='btn-insert'>
+          <Tooltip color={'blue'} title={'Create New Tag'}>
+            <Button type='primary'>
               Create
             </Button>
           </Tooltip>
+          {/* <Search placeholder="input search text" enterButton /> */}
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
           </div>
