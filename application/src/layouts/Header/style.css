@@ -1,5 +1,5 @@
 .header {
-    background: #1890ff;
+    background: #0050b3;
     padding: 10px 30px;
     display: flex;
 }
@@ -7,7 +7,7 @@
 .btn-toggle1 {
     font-size: 18px;
     color: white;
-    width: 50px;
+    width: 30px;
 }
 .title-header {
     margin-top: 3px;

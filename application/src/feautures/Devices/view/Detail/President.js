@@ -1,7 +1,8 @@
-import { Table, Button, Space, Tooltip } from 'antd';
+import { Table, Button, Space, Tooltip, Modal } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
+import CreateDevice from '../CreateF/Create';
 export default class President extends Component {
   showDeleteConfirm = () => {
 
@@ -54,15 +55,12 @@ export default class President extends Component {
         ),
       },
     ];
+
     return (
       <div className='main-container'>
         <div className='title-page'>DEVICE MANAGERMENT</div>
         <div className='container-table'>
-          <Tooltip color={'blue'} title={'Create New Device'}>
-            <Button type='primary' className='btn-insert'>
-              Create
-            </Button>
-          </Tooltip>
+          <CreateDevice />
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
           </div>

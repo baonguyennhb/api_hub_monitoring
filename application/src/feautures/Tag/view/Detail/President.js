@@ -2,6 +2,7 @@ import { Table, Button, Space, Tooltip, Input } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
+import CreateTag from '../Create/Create';
 const { Search } = Input;
 export default class President extends Component {
   showDeleteConfirm = () => {
@@ -54,11 +55,7 @@ export default class President extends Component {
       <div className='main-container'>
         <div className='title-page'>TAG MANAGERMENT</div>
         <div className='container-table'>
-          <Tooltip color={'blue'} title={'Create New Tag'}>
-            <Button type='primary'>
-              Create
-            </Button>
-          </Tooltip>
+          <CreateTag />
           {/* <Search placeholder="input search text" enterButton /> */}
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
