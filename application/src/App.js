@@ -9,7 +9,7 @@ import { Monitor } from './feautures/Monitor';
 import { Auth } from './layouts/Auth';
 import { Login } from './feautures/Auth/view/Login';
 import { ApiSource } from './feautures/ApiSource/view/Detail';
-import { Device } from './feautures/Devices/view/Detail';
+import { Device } from './feautures/Devices/view/Index';
 import { ConfigReport } from './feautures/ConfigReport/view/Detail';
 import { TagPage } from './feautures/Tag/view/Detail';
 import { DataHubPage } from './feautures/DataHub/view';

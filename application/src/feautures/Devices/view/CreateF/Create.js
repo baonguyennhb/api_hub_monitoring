@@ -1,9 +1,9 @@
-import { Button, Modal, Tooltip, Form, Input, } from 'antd';
+import { Button, Modal, Tooltip, Form, Input, message } from 'antd';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Navigate } from 'react-router';
-import Create from '../../../Tag/view/Create/Create';
+import { Navigate } from 'react-router-dom';
 import { createDevice } from '../../redux';
+import { fetchingTableDevice } from '../../redux';
 const { TextArea } = Input;
 class CreateDevice extends Component {
     //const [isModalVisible, setIsModalVisible] = useState(false);
@@ -21,26 +21,25 @@ class CreateDevice extends Component {
         this.setState({
             isModalVisible: false
         })
+        // this.props.fetchingTableDevice()
     };
     onFinish = (value) => {
-        console.log(value)
         this.props.createDevice(value)
-        //this.handleOk()
+        this.handleOk()
     }
     handleCancel = () => {
         this.setState({
             isModalVisible: false
         })
     };
-
     render() {
-        const { create } = this.props.devices
-        //console.log(create.data.serial)
-        if (create.data.serial) {
-            return (
-                <Navigate to={"/devices"} />
-            )
-        }
+      console.log(this.props.devices.create.data)
+      const {create} = this.props.devices
+      if (create.data.code === 200) {
+          return (
+            <Navigate to={"/devices"}/>
+          )
+      }
         return (
             <>
                 <Tooltip color={'blue'} title={'Create New Device'}>
@@ -79,7 +78,11 @@ function mapDispatchToProps(dispatch) {
     return {
         createDevice: (params) => {
             dispatch(createDevice(params))
+        },
+        fetchingTableDevice: () => {
+            dispatch(fetchingTableDevice())
         }
+        
     }
 }
 function mapStateToProps(state) {

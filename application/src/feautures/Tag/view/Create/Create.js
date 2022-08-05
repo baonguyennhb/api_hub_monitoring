@@ -31,6 +31,7 @@ class CreateTag extends Component {
             isModalVisible: false,
             tagName: ''
         })
+        window.location.reload()
     };
     handleCancel = () => {
         this.setState({

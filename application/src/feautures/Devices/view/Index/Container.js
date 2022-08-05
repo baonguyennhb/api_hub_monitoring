@@ -4,13 +4,16 @@ import { fetchingTableDevice } from '../../redux'
 import { connect } from 'react-redux'
 
 class Container extends Component {
+  state = {
+    devices: []
+  }
   render() {
     return (
       <President {...this.props}/>
     )
   }
   componentDidMount() {
-    this.props.fetchingTableDevice()
+    this.props.fetchingTableDevice() 
   }
 }
 

@@ -1,4 +1,4 @@
-import { Table, Button, Space, Tooltip, Modal } from 'antd';
+import { Table, Button, Space, Tooltip, Modal, message } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
@@ -55,7 +55,6 @@ export default class President extends Component {
         ),
       },
     ];
-
     return (
       <div className='main-container'>
         <div className='title-page'>DEVICE MANAGERMENT</div>
