@@ -1,4 +1,4 @@
-@import url('style/antd.css');
+@import url('antd/dist/antd.css');
 .App {
   text-align: center;
 }

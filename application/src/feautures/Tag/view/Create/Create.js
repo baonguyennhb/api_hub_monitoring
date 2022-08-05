@@ -11,10 +11,11 @@ class CreateTag extends Component {
     state = {
         isModalVisible: false,
         serial: '',
-        tagName:''
+        tagName: ''
     }
     showModal = () => {
         this.setState({
+            tagName: '',
             isModalVisible: true,
         })
     };
@@ -28,6 +29,7 @@ class CreateTag extends Component {
     handleOk = () => {
         this.setState({
             isModalVisible: false,
+            tagName: ''
         })
     };
     handleCancel = () => {
@@ -48,7 +50,8 @@ class CreateTag extends Component {
                     </Button>
                 </Tooltip>
                 <Modal title="CREATE A NEW TAG" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel} footer={null}>
-                    <Form onFinish={this.onFinish}
+                    <Form onFinish={this.onFinish} initialValues = {{tagName: ''}}
+                        layout="vertical"
                     >
                         <Form.Item
                             name="device"
@@ -67,15 +70,15 @@ class CreateTag extends Component {
                                 }
                             </Select>
                         </Form.Item>
-                        <Form.Item label="TAG NAME" name="tagName" >
-                            <Input placeholder="Input TAG NAME" />
+                        <Form.Item label="TAG NAME" name="tagName" value = {this.state.tagName}>
+                            <Input placeholder="Input TAG NAME"/>
                         </Form.Item>
                         <Form.Item label="DESCRIPTION">
                             <TextArea placeholder="Input DESCRIPTION" />
                         </Form.Item>
                         <Form.Item >
                             <Button type="primary" htmlType="submit" className='btn-submit'>Submit</Button>
-                            <Button  className='btn-cancel' onClick={this.handleCancel}>Cancel</Button>
+                            <Button className='btn-cancel' onClick={this.handleCancel}>Cancel</Button>
                         </Form.Item>
                     </Form>
                 </Modal>

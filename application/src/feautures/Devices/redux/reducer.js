@@ -21,6 +21,26 @@ export function reducer(state = initState, action) {
                     loading: true
                 }
             }
+        case CONSTANTS.CREATE_DEVICE: 
+            return {
+                ...state,
+                create: {
+                    ...state.create,
+                    error: payload.error,
+                    data: payload.data,
+                    loading: false
+                }
+            }
+        case CONSTANTS.CREATE_DEVICE_LOADING: 
+            return {
+                ...state,
+                create: {
+                    ...state.create,
+                    error: {},
+                    data: {},
+                    loading: true
+                }
+            }
         default:
             return state
     }

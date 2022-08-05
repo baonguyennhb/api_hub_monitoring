@@ -55,7 +55,7 @@ export default class President extends Component {
       <div className='main-container'>
         <div className='title-page'>TAG MANAGERMENT</div>
         <div className='container-table'>
-          <CreateTag />
+          <CreateTag tagName = {''} />
           {/* <Search placeholder="input search text" enterButton /> */}
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
