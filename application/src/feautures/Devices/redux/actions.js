@@ -50,3 +50,27 @@ export function createActionLoading() {
         payload: {}
     }
 }
+
+export function deleteDevice(params) {
+    return dispatch => {
+        dispatch(deleteActionLoading())
+        axios.delete("http://localhost:4000/api/v1/device/delete", params = {params})
+            .then(res => dispatch(deleteAction(res)))
+    }
+} 
+
+export function deleteAction(response) {
+    if (response.data.code ===200) {
+        pushMessageSuccess("Delete Successfully!")
+    }
+    return {
+        type: CONSTANTS.DELETE_DEVICE,
+        payload: response
+    }
+}
+export function deleteActionLoading() {
+    return {
+        type: CONSTANTS.DELETE_DEVICE_LOADING,
+        payload: {}
+    }
+}

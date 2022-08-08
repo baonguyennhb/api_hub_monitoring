@@ -6,7 +6,13 @@ const initState = {
     create: {
         error: {},
         data: {},
-        loading: false
-    }
+        loading: false,
+    },
+    delete: {
+        error: {},
+        data: {},
+        loading: false,
+    },
+    reload: false
 }
 export default initState

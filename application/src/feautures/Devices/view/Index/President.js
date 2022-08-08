@@ -1,12 +1,19 @@
-import { Table, Button, Space, Tooltip, Modal, message } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Space, Tooltip, Modal  } from 'antd';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
-import CreateDevice from '../CreateF/Create';
+import { CreateDevice } from '../CreateF';
 export default class President extends Component {
-  showDeleteConfirm = () => {
-
-  }
+  confirm = (data) => {
+    Modal.confirm({
+      title: 'Confirm',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Do you want to delete device',
+      okText: 'Delete',
+      cancelText: 'Cancel',
+      onOk: () => this.props.handleDelete(data)
+    });
+  };
   render() {
     const { data } = this.props?.devices.list
     const dataSource = data.map((value, index) => {
@@ -49,7 +56,7 @@ export default class President extends Component {
               }} />
             </Tooltip>
             <Tooltip title={'Delete'}>
-              <DeleteOutlined onClick={(e) => this.showDeleteConfirm(record)} />
+              <DeleteOutlined onClick={(e) => this.confirm(record)} />
             </Tooltip>
           </Space>
         ),

@@ -28,8 +28,9 @@ export function reducer(state = initState, action) {
                     ...state.create,
                     error: payload.error,
                     data: payload.data,
-                    loading: false
-                }
+                    loading: false,
+                },
+                reload: true
             }
         case CONSTANTS.CREATE_DEVICE_LOADING: 
             return {
@@ -38,8 +39,31 @@ export function reducer(state = initState, action) {
                     ...state.create,
                     error: {},
                     data: {},
-                    loading: true
-                }
+                    loading: true,
+                },
+                reload: false
+            }
+        case CONSTANTS.DELETE_DEVICE: 
+            return {
+                ...state,
+                delete: {
+                    ...state.delete,
+                    error: payload.error,
+                    data: payload.data,
+                    loading: false,
+                },
+                reload: true
+            }
+        case CONSTANTS.DELETE_DEVICE_LOADING: 
+            return {
+                ...state,
+                delete: {
+                    ...state.delete,
+                    data: {},
+                    error: {},
+                    loading: true,
+                },
+                reload: false
             }
         default:
             return state
