@@ -16,7 +16,7 @@ class FormApiSource extends Component {
         data = data !== undefined ? data : {}
 
         const { serial, model, description } = data
-        let title_form = isDetail ? "EDIT INVERTER" : "CREATE A NEW INVERTER"
+        let title_form = isDetail ? "EDIT API SOURCE" : "CREATE A NEW API SOURCE"
         return (
             <>
                 <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null}>
@@ -25,17 +25,20 @@ class FormApiSource extends Component {
                         initialValues={{ serial: serial, model: model, description: description }}
                         layout="vertical"
                     >
-                        <Form.Item label="URL" name="serial">
-                            <Input placeholder="Input SERIAL" />
+                        <Form.Item label="Connection name" name="connection_name">
+                            <Input placeholder="Connection name" />
                         </Form.Item>
-                        <Form.Item label="Interval Time" name="model">
-                            <Input placeholder="Input MODEL" />
+                        <Form.Item label="URL" name="url">
+                            <Input placeholder="URL" />
                         </Form.Item>
-                        <Form.Item label="Check connection time" name="description">
-                            <Input placeholder="Input DESCRIPTION" />
+                        <Form.Item label="Interval Time" name="interval_time">
+                            <Input placeholder="Interval Time" />
                         </Form.Item>
-                        <Form.Item label="DESCRIPTION" name="description" >
-                            <TextArea placeholder="Input DESCRIPTION" />
+                        <Form.Item label="Check connection time" name="check_connection_time">
+                            <Input placeholder="Check connection time" />
+                        </Form.Item>
+                        <Form.Item label="Description" name="description" >
+                            <TextArea placeholder="Description" />
                         </Form.Item>
                         <Form.Item name="authorization" valuePropName="checked" >
                             <Checkbox onChange={(e) => this.showAuthorization(e.target.checked)} >Authorization</Checkbox>
@@ -56,6 +59,7 @@ class FormApiSource extends Component {
                         <Form.Item>
                             <Button type="primary" htmlType="submit" className='btn-submit'>Submit</Button>
                             <Button className='btn-cancel' onClick={handleCancel}>Cancel</Button>
+                            <Button htmlType="button" type="primary">Test Connection</Button>
                             <Button htmlType="button" onClick={this.props.onReset}>
                                 Reset
                             </Button>

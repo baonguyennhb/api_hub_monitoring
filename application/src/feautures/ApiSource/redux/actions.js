@@ -38,14 +38,14 @@ export function createAction(response) {
         pushMessageSuccess("Add Device Sucessfully!");
     }
     return {
-        type: CONSTANTS.CREATE_DEVICE,
+        type: CONSTANTS.CREATE_APISOURCE,
         payload: response
     }
 }
 
 export function createActionLoading() {
     return {
-        type: CONSTANTS.CREATE_DEVICE_LOADING,
+        type: CONSTANTS.CREATE_APISOURCE_LOADING,
         payload: {}
     }
 }
@@ -63,13 +63,13 @@ export function deleteAction(response) {
         pushMessageSuccess("Delete Successfully!")
     }
     return {
-        type: CONSTANTS.DELETE_DEVICE,
+        type: CONSTANTS.DELETE_APISOURCE,
         payload: response
     }
 }
 export function deleteActionLoading() {
     return {
-        type: CONSTANTS.DELETE_DEVICE_LOADING,
+        type: CONSTANTS.DELETE_APISOURCE_LOADING,
         payload: {}
     }
 }

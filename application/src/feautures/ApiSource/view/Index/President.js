@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Table, Button, Space, Tooltip } from 'antd';
+import { Table, Button, Space, Tooltip, Tag } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { CreateApiSource } from '../Create';
+import { Link } from 'react-router-dom';
 
 export default class President extends Component {
     render() {
+        
         const { data } = this.props?.apiSources.list
         const dataSource = data.map((value, index) => {
             return {
@@ -13,6 +15,7 @@ export default class President extends Component {
                 ...value
             }
         })
+        console.log(dataSource)
         const columns = [
             {
                 title: 'No',
@@ -21,8 +24,14 @@ export default class President extends Component {
             },
             {
                 title: 'Connection',
-                dataIndex: 'connecttion',
+                // dataIndex: 'connection_name',
                 key: 'connecttion',
+                render: (connecttion) => {
+                    console.log(connecttion)
+                    return (
+                        <Link to={connecttion.connection_name}>{connecttion.connection_name}</Link>
+                    )
+                }
             },
             {
                 title: 'End point',
@@ -38,6 +47,13 @@ export default class President extends Component {
                 title: 'Status connecttion',
                 dataIndex: 'status',
                 key: 'status',
+                render: (_, { status }) => {
+                    let color = status ?  "#87d068" : "gray"
+                    let textStatus =  status ? "GOOD" : "BAD"
+                    return (
+                        <Tag color={color}>{textStatus}</Tag>
+                    )
+                }
             },
             {
                 title: 'Action',

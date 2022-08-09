@@ -21,7 +21,7 @@ export function reducer(state = initState, action) {
                     loading: true
                 }
             }
-        case CONSTANTS.CREATE_DEVICE:
+        case CONSTANTS.CREATE_APISOURCE:
             return {
                 ...state,
                 create: {
@@ -32,7 +32,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: true
             }
-        case CONSTANTS.CREATE_DEVICE_LOADING:
+        case CONSTANTS.CREATE_APISOURCE_LOADING:
             return {
                 ...state,
                 create: {
@@ -43,7 +43,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
-        case CONSTANTS.DELETE_DEVICE:
+        case CONSTANTS.DELETE_APISOURCE:
             return {
                 ...state,
                 delete: {
@@ -54,7 +54,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: true
             }
-        case CONSTANTS.DELETE_DEVICE_LOADING:
+        case CONSTANTS.DELETE_APISOURCE_LOADING:
             return {
                 ...state,
                 delete: {

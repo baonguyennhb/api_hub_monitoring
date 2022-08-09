@@ -64,7 +64,7 @@ export default class President extends Component {
     ];
     return (
       <div className='main-container'>
-        <div className='title-page'>DEVICE MANAGERMENT</div>
+        <div className='title-page'>DEVICE MANAGERMENT // {this.props.connection}</div>
         <div className='container-table'>
           <CreateDevice />
           <div className='table'>

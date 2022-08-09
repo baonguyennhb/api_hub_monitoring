@@ -23,6 +23,7 @@ function App() {
           <Route path='/plant/:id' element={<AppLayout><ViewReport /></AppLayout>} />
           <Route path='/monitor' element={<AppLayout><Monitor /></AppLayout>} />
           <Route path='/api-source' element={<AppLayout><ApiSource /></AppLayout>} />
+          <Route path='/api-source/:id' element={<AppLayout><Device /></AppLayout>} />
           <Route path='/devices' element={<AppLayout><Device/></AppLayout>} />
           <Route path='/config/report' element={<AppLayout><ConfigReport /></AppLayout>} />
           <Route path='/tags' element={<AppLayout><TagPage /></AppLayout>} />

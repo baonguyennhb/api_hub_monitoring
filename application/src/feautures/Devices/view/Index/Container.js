@@ -14,6 +14,7 @@ class Container extends Component {
     return (
       <President {...this.props}
         handleDelete={this.handleDelete}
+        connection = {"E_ThangLong01"}
       />
     )
   }
