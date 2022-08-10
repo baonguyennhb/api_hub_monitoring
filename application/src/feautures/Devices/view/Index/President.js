@@ -1,4 +1,4 @@
-import { Table, Space, Tooltip, Modal  } from 'antd';
+import { Table, Space, Tooltip, Modal } from 'antd';
 import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
@@ -25,12 +25,17 @@ export default class President extends Component {
     })
     const columns = [
       {
-        title: 'NO',
+        title: 'No',
         dataIndex: 'index',
         key: 'index',
       },
       {
-        title: 'SERIAL',
+        title: 'Metter ID',
+        dataIndex: 'serial',
+        key: 'serial',
+      },
+      {
+        title: 'Serial',
         dataIndex: 'serial',
         key: 'serial',
       },
@@ -64,7 +69,10 @@ export default class President extends Component {
     ];
     return (
       <div className='main-container'>
-        <div className='title-page'>DEVICE MANAGERMENT // {this.props.connection}</div>
+        <div className='group-header'>
+          <div className='title-page'>DEVICE MANAGERMENT </div>
+          <div className='title-sub'>{this.props.connection}</div>
+        </div>
         <div className='container-table'>
           <CreateDevice />
           <div className='table'>

@@ -1,3 +1,6 @@
+.group-header {
+    display: flex;
+}
 .container-table {
     background: white;
     padding: 10px 10px;
