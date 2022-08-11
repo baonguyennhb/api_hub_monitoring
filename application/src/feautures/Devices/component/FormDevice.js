@@ -10,7 +10,7 @@ class FormDevice extends Component {
         let title_form = isDetail ? "EDIT INVERTER" : "CREATE A NEW INVERTER"
         return (
             <>
-                <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null}>
+                <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >
                     <Form onFinish={onFinish}
                         ref={this.props.formRef}
                         initialValues={{ serial: serial, model: model, description: description }}
@@ -43,13 +43,6 @@ class FormDevice extends Component {
                             },
                         ]}>
                             <Input placeholder="Input INTERVAL" />
-                        </Form.Item>
-                        <Form.Item >
-                            <Button type="primary" htmlType="submit" className='btn-submit'>Submit</Button>
-                            <Button className='btn-cancel' onClick={handleCancel}>Cancel</Button>
-                            <Button htmlType="button" onClick={this.props.onReset}>
-                                Reset
-                            </Button>
                         </Form.Item>
                     </Form>
                 </Modal>

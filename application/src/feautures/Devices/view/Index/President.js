@@ -1,8 +1,11 @@
-import { Table, Space, Tooltip, Modal } from 'antd';
+import { Table, Space, Tooltip, Modal, Button } from 'antd';
 import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
 import { CreateDevice } from '../CreateF';
+import { EditDevice } from '../Edit';
+import FormApiSource from '../../../ApiSource/component/FormApiSource';
+import FormDevice from '../../component/FormDevice';
 export default class President extends Component {
   confirm = (data) => {
     Modal.confirm({
@@ -55,14 +58,15 @@ export default class President extends Component {
         render: (record) => (
           <Space size="middle">
             <Tooltip title={'Edit'}>
-              <EditOutlined onClick={() => {
-                // setFactoryrecord(record)
-                // showEdit()
-              }} />
+              {/* <EditOutlined onClick={() => {
+               
+              }} /> */}
+              <Button onClick={(e) => this.props.showModal(record)}>Edit</Button>
             </Tooltip>
-            <Tooltip title={'Delete'}>
+            {/* <Tooltip title={'Delete'}>
               <DeleteOutlined onClick={(e) => this.confirm(record)} />
-            </Tooltip>
+            </Tooltip> */}
+            <Button danger onClick={(e) => this.confirm(record)}>Delete</Button>
           </Space>
         ),
       },

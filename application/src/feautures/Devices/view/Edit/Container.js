@@ -36,9 +36,10 @@ class Container extends Component {
         })
     };
     render() {
+        console.log(this.props.isModalVisible)
         return (
             <President {...this.props}
-                isModalVisible = {this.state.isModalVisible}
+                isModalVisible = {this.props.isModalVisible}
                 showModal = {this.showModal}
                 handleOk = {this.handleOk}
                 handleCancel = {this.handleCancel}
