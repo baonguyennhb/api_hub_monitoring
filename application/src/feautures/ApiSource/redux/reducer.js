@@ -21,6 +21,22 @@ export function reducer(state = initState, action) {
                     loading: true
                 }
             }
+        case CONSTANTS.FETCHING_DETAIL_APISOURCE:
+            return {
+                ...state,
+                detail: {
+                    data: payload.data.data[0],
+                    loading: false
+                }
+            }
+        case CONSTANTS.FETCHING_DETAIL_APISOURCE_LOADDING:
+            return {
+                ...state,
+                detail: {
+                    ...state.detail,
+                    loading: true
+                }
+            }
         case CONSTANTS.CREATE_APISOURCE:
             return {
                 ...state,
@@ -64,6 +80,14 @@ export function reducer(state = initState, action) {
                     loading: true,
                 },
                 reload: false
+            }
+        case CONSTANTS.TEST_CONNECT_APISOURCE:
+            return {
+                ...state,
+                test: {
+                    ...state.test,
+                    data: payload.data
+                }
             }
         default:
             return state

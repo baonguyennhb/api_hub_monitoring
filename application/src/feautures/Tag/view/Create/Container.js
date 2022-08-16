@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { createDevice } from '../../redux'
-import { fetchingTableDevice } from '../../redux'
+import { createTag } from '../../redux'
+import { fetchingTableTag } from '../../redux'
 import President from './President'
 
 class Container extends Component {
@@ -25,13 +25,15 @@ class Container extends Component {
         })
     };
     onFinish = (value) => {
-        const apiSource =  window.location.pathname.split("/")[2] 
-        const newDevice = {
+        const metterId =  window.location.pathname.split("/")[3] 
+        const api_source = window.location.pathname.split("/")[2] 
+        const newTag = {
             ...value,
-            apiSource: apiSource
+            metterId: metterId,
+            apiSource : api_source
         }
-        console.log(newDevice)
-        this.props.createDevice(newDevice)
+        console.log(newTag)
+        this.props.createTag(newTag)
         this.onReset()
     }
     handleCancel = () => {
@@ -58,18 +60,18 @@ class Container extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        createDevice: (params) => {
-            dispatch(createDevice(params))
+        createTag: (params) => {
+            dispatch(createTag(params))
         },
-        fetchingTableDevice: () => {
-            dispatch(fetchingTableDevice())
+        fetchingTableTag: () => {
+            dispatch(fetchingTableTag())
         }
 
     }
 }
 function mapStateToProps(state) {
     return {
-        devices: state.device
+        tags: state.tag
     }
 }
 

@@ -1,0 +1,21 @@
+.container-table {
+    background: white;
+    padding: 10px 10px;
+}
+.container-table .table {
+    margin-top: 15px;
+}
+.container-table
+.table
+.ant-table-thead>tr>th {
+    background: #f5f5f5;
+    padding: 7px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-weight: bold;
+}
+.container-table
+.table
+.ant-table-tbody>tr>td {
+    padding: 10px;
+}

@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
-import { Table, Button, Space, Tooltip, Tag } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Button, Space, Tooltip, Tag, Modal } from 'antd';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { CreateApiSource } from '../Create';
 import { Link } from 'react-router-dom';
+import "./style.css"
 
 export default class President extends Component {
+    confirm = (data) => {
+        Modal.confirm({
+            title: 'Confirm',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Do you want to delete Api Source',
+            okText: 'Delete',
+            cancelText: 'Cancel',
+            onOk: () => this.props.handleDelete(data)
+        });
+    };
     render() {
-        
         const { data } = this.props?.apiSources.list
         const dataSource = data.map((value, index) => {
             return {
@@ -15,7 +25,6 @@ export default class President extends Component {
                 ...value
             }
         })
-        console.log(dataSource)
         const columns = [
             {
                 title: 'No',
@@ -27,19 +36,18 @@ export default class President extends Component {
                 // dataIndex: 'connection_name',
                 key: 'connecttion',
                 render: (connecttion) => {
-                    console.log(connecttion)
                     return (
-                        <Link to={connecttion.connection_name}>{connecttion.connection_name}</Link>
+                        <Link className='connecttion' to={connecttion.id.toString()}>{connecttion.connection_name}</Link>
                     )
                 }
             },
             {
-                title: 'End point',
-                dataIndex: 'endpoint',
-                key: 'endpoint',
+                title: 'URL',
+                dataIndex: 'url',
+                key: 'url',
             },
             {
-                title: 'DESCRIPTION',
+                title: 'Description',
                 dataIndex: 'description',
                 key: 'description',
             },
@@ -48,8 +56,8 @@ export default class President extends Component {
                 dataIndex: 'status',
                 key: 'status',
                 render: (_, { status }) => {
-                    let color = status ?  "#87d068" : "gray"
-                    let textStatus =  status ? "GOOD" : "BAD"
+                    let color = status ? "#87d068" : "gray"
+                    let textStatus = status ? "GOOD" : "BAD"
                     return (
                         <Tag color={color}>{textStatus}</Tag>
                     )
@@ -60,15 +68,8 @@ export default class President extends Component {
                 key: 'action',
                 render: (record) => (
                     <Space size="middle">
-                        <Tooltip title={'Edit'}>
-                            <EditOutlined onClick={() => {
-                                // setFactoryrecord(record)
-                                // showEdit()
-                            }} />
-                        </Tooltip>
-                        <Tooltip title={'Delete'}>
-                            <DeleteOutlined onClick={(e) => this.showDeleteConfirm(record)} />
-                        </Tooltip>
+                        <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
+                        <Button type='danger' onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
                     </Space>
                 ),
             },

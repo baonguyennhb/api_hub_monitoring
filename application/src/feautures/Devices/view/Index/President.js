@@ -1,4 +1,4 @@
-import { Table, Space, Tooltip, Modal, Button } from 'antd';
+import { Table, Space, Tooltip, Modal, Button, Tag, Col, Row } from 'antd';
 import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
@@ -6,6 +6,7 @@ import { CreateDevice } from '../CreateF';
 import { EditDevice } from '../Edit';
 import FormApiSource from '../../../ApiSource/component/FormApiSource';
 import FormDevice from '../../component/FormDevice';
+import { Link } from 'react-router-dom';
 export default class President extends Component {
   confirm = (data) => {
     Modal.confirm({
@@ -34,8 +35,12 @@ export default class President extends Component {
       },
       {
         title: 'Metter ID',
-        dataIndex: 'serial',
-        key: 'serial',
+        key: 'metter_id',
+        render: (metterId) => {
+          return (
+            <Link className='connecttion' to={metterId.metter_id}>{metterId.metter_id}</Link>
+          )
+        }
       },
       {
         title: 'Serial',
@@ -43,40 +48,44 @@ export default class President extends Component {
         key: 'serial',
       },
       {
-        title: 'MODEL',
-        dataIndex: 'model',
-        key: 'model',
-      },
-      {
-        title: 'DESCRIPTION',
+        title: 'Description',
         dataIndex: 'description',
         key: 'description',
       },
       {
-        title: 'ACTION',
+        title: 'Status',
+        dataIndex: 'status',
+        key: 'status',
+        render: (_, { status }) => {
+          let color = status ? "#87d068" : "gray"
+          let textStatus = status ? "GOOD" : "BAD"
+          return (
+            <Tag color={color}>{textStatus}</Tag>
+          )
+        }
+      },
+      {
+        title: 'Action',
         key: 'action',
+        width: '10%',
         render: (record) => (
           <Space size="middle">
-            <Tooltip title={'Edit'}>
-              {/* <EditOutlined onClick={() => {
-               
-              }} /> */}
-              <Button onClick={(e) => this.props.showModal(record)}>Edit</Button>
-            </Tooltip>
-            {/* <Tooltip title={'Delete'}>
-              <DeleteOutlined onClick={(e) => this.confirm(record)} />
-            </Tooltip> */}
-            <Button danger onClick={(e) => this.confirm(record)}>Delete</Button>
+            <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
+            <Button type='danger' onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
           </Space>
         ),
       },
     ];
     return (
       <div className='main-container'>
-        <div className='group-header'>
-          <div className='title-page'>DEVICE MANAGERMENT </div>
-          <div className='title-sub'>{this.props.connection}</div>
-        </div>
+        <Row>
+          <Col span={12}>
+            <div className='title-page'>DEVICE MANAGERMENT </div>
+          </Col>
+          <Col span={12}>
+            <div className='title-sub'>{this.props.connection}</div>
+          </Col>
+        </Row>
         <div className='container-table'>
           <CreateDevice />
           <div className='table'>

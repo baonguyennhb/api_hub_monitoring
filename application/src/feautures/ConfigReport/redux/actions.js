@@ -3,7 +3,7 @@ import axios from 'axios'
 export function fechingTableReport() {
     return dispatch => {
         dispatch(fetchingLoadingAction())
-        axios.get("http://localhost:4000/api/v1/report/list/cfg")
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/report/list/cfg")
             .then(res => {
                 dispatch(fetchingAction(res))
             })

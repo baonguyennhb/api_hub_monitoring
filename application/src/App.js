@@ -13,6 +13,7 @@ import { Device } from './feautures/Devices/view/Index';
 import { ConfigReport } from './feautures/ConfigReport/view/Detail';
 import { TagPage } from './feautures/Tag/view/Detail';
 import { DataHubPage } from './feautures/DataHub/view';
+import { MonitorTagPage } from './feautures/Tag/view/Monitor';
 function App() {
   return (
     <Provider store={store}>
@@ -24,6 +25,8 @@ function App() {
           <Route path='/monitor' element={<AppLayout><Monitor /></AppLayout>} />
           <Route path='/api-source' element={<AppLayout><ApiSource /></AppLayout>} />
           <Route path='/api-source/:id' element={<AppLayout><Device /></AppLayout>} />
+          <Route path='/api-source/:id/:id' element={<AppLayout><TagPage /></AppLayout>} />
+          <Route path='/api-source/:id/:id/monitor' element={<AppLayout><MonitorTagPage /></AppLayout>} />
           <Route path='/devices' element={<AppLayout><Device/></AppLayout>} />
           <Route path='/config/report' element={<AppLayout><ConfigReport /></AppLayout>} />
           <Route path='/tags' element={<AppLayout><TagPage /></AppLayout>} />

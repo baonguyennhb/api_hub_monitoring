@@ -3,6 +3,10 @@ const initState = {
         data: [],
         loading: false
     },
+    detail: {
+        data: {},
+        loading: false
+    },
     create: {
         error: {},
         data: {},

@@ -13,7 +13,7 @@ export function reducer(state = initState, action) {
                     loading: false
                 }
             }
-        case CONSTANTS.FETCHING_LIST_DEVICE_LOADING: 
+        case CONSTANTS.FETCHING_LIST_DEVICE_LOADING:
             return {
                 ...state,
                 list: {
@@ -21,7 +21,15 @@ export function reducer(state = initState, action) {
                     loading: true
                 }
             }
-        case CONSTANTS.CREATE_DEVICE: 
+        case CONSTANTS.FETCHING_DETAIL_DEVICE:
+            return {
+                ...state,
+                detail: {
+                    data: payload.data.data[0],
+                    loading: false
+                }
+            }
+        case CONSTANTS.CREATE_DEVICE:
             return {
                 ...state,
                 create: {
@@ -32,7 +40,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: true
             }
-        case CONSTANTS.CREATE_DEVICE_LOADING: 
+        case CONSTANTS.CREATE_DEVICE_LOADING:
             return {
                 ...state,
                 create: {
@@ -43,7 +51,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
-        case CONSTANTS.DELETE_DEVICE: 
+        case CONSTANTS.DELETE_DEVICE:
             return {
                 ...state,
                 delete: {
@@ -54,7 +62,7 @@ export function reducer(state = initState, action) {
                 },
                 reload: true
             }
-        case CONSTANTS.DELETE_DEVICE_LOADING: 
+        case CONSTANTS.DELETE_DEVICE_LOADING:
             return {
                 ...state,
                 delete: {

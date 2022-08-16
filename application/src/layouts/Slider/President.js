@@ -15,26 +15,14 @@ const { Sider } = Layout;
 export default class President extends Component {
     render() {
         return (
-            <Sider trigger={null} collapsible collapsed={this.props.collapsed} className='side-menu'>
+            <Sider trigger={null} collapsible collapsed={this.props.common.collapse} className='side-menu'>
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
                 >
                     <Menu.Item icon={<ApiOutlined/>} key="1">
-                        API - SOURCE
+                        API-SOURCE
                         <Link to="/api-source" />
-                    </Menu.Item>
-                    <Menu.Item icon={<DashboardOutlined />} key="2">
-                        DEVICE
-                        <Link to="/devices" />
-                    </Menu.Item>
-                    <Menu.Item icon={<VideoCameraOutlined />} key="3">
-                        TAG
-                        <Link to="/tags" />
-                    </Menu.Item>
-                    <Menu.Item icon={<VideoCameraOutlined />} key="4">
-                        MONITOR - TAG
-                        <Link to="/monitor" />
                     </Menu.Item>
                     <Menu.Item icon={<PieChartOutlined />} key="5">
                         DATA - HUB

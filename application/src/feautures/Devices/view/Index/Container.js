@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import President from './President'
 import { fetchingTableDevice, deleteDevice } from '../../redux'
+import { fetchingDetailApiSource } from '../../../ApiSource/redux'
 import { connect } from 'react-redux'
+import { notification } from 'antd'
 import FormDevice from '../../component/FormDevice'
 
 class Container extends Component {
@@ -12,10 +14,16 @@ class Container extends Component {
   }
   showModal = (value) => {
     console.log("Show Edit Modal")
-    console.log(value)
     this.setState({
-      data : value,
-      isModalVisible: true
+      isModalVisible: true,
+      data: value
+    }, () => {
+      this.formRef.current.setFieldsValue({
+        serial: value.serial,
+        metter_id: value.metter_id,
+        description: value.description,
+        interval: value.interval
+      })
     })
   }
   handleOk = () => {
@@ -23,14 +31,15 @@ class Container extends Component {
       ...this.state,
       isModalVisible: false
     })
+    this.openNotificationWithIcon("warning")
     this.onResetForm()
   }
   handleCancel = () => {
-    this.onResetForm()
     this.setState({
       ...this.state,
       isModalVisible: false
     })
+    //this.onResetForm()
   }
   onResetForm = () => {
     console.log("reset form")
@@ -39,52 +48,65 @@ class Container extends Component {
   handleDelete = (data) => {
     this.props.deleteDevice({ id: data.id })
   }
+  openNotificationWithIcon = type => {
+    notification[type]({
+      message: 'Feauture is being updated!',
+    })
+    notification.config({
+      duration: 2
+    })
+  };
   render() {
     return (
       <>
         <President {...this.props}
           handleDelete={this.handleDelete}
-          connection={"E_ThangLong01"}
+          connection={this.props.apiSource.detail.data.connection_name}
           showModal={this.showModal}
         />
-        <FormDevice {...this.props}   
+        <FormDevice {...this.props}
           handleOk={this.handleOk}
           handleCancel={this.handleCancel}
           isModalVisible={this.state.isModalVisible}
-          isDetail = {true}
-          data = {this.state.data}
-          formRef = {this.formRef}
-          />
+          isDetail={true}
+          data={this.state.data}
+          formRef={this.formRef}
+        />
       </>
     )
   }
   componentDidMount() {
-    this.props.fetchingTableDevice()
+    const api_source = { apiSource: window.location.pathname.split("/")[2] }
+    this.props.fetchingTableDevice(api_source)
+    const api_source_id = { apiSourceId: window.location.pathname.split("/")[2] }
+    this.props.fetchingDetailApiSource(api_source_id)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.devices.reload !== this.props.devices.reload && this.props.devices.reload) {
       console.log("OK")
-      this.props.fetchingTableDevice()
+      const api_source = { apiSource: window.location.pathname.split("/")[2] }
+      this.props.fetchingTableDevice(api_source)
     }
-    // if (this.props.devices.reload) {
-    //   this.props.fetchingTableDevice()
-    // }
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchingTableDevice: () => {
-      dispatch(fetchingTableDevice())
+    fetchingTableDevice: (apiSource) => {
+      dispatch(fetchingTableDevice(apiSource))
     },
     deleteDevice: (id) => {
       dispatch(deleteDevice(id))
+    },
+    fetchingDetailApiSource: (id) => {
+      dispatch(fetchingDetailApiSource(id))
     }
   }
 }
 function mapStateToProps(state) {
   return {
-    devices: state.device
+    devices: state.device,
+    apiSource: state.apiSource
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Container)

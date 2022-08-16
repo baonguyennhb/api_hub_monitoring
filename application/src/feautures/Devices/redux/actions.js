@@ -1,10 +1,10 @@
 import axios from 'axios'
 import * as CONSTANTS from './constants'
 import { pushMessageSuccess } from "../../../layouts/Notification"
-export function fetchingTableDevice() {
+export function fetchingTableDevice( params) {
     return dispatch => {
         dispatch(fetchingLoadingAction)
-        axios.get('http://localhost:4000/api/v1/device/list')
+        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/device/list', params = {params})
             .then(res => {
                 dispatch(fetchingAction(res))
             })
@@ -23,11 +23,25 @@ export function fetchingLoadingAction() {
     }
 }
 
+export function fetchingDetailDevice(params) {
+    return dispatch => {
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/device/detail", params = {params})
+            .then(res => dispatch(fetchingDetailAction(res)))
+    }
+}
+
+export function fetchingDetailAction(response) {
+    return {
+        type: CONSTANTS.FETCHING_DETAIL_DEVICE,
+        payload: response
+    }
+} 
+
 
 export function createDevice(params) {
     return dispatch => {
         dispatch(createActionLoading())
-        axios.post("http://localhost:4000/api/v1/device/add", params)
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/device/add", params)
             .then(res => {
                 dispatch(createAction(res))
             })
@@ -54,7 +68,7 @@ export function createActionLoading() {
 export function deleteDevice(params) {
     return dispatch => {
         dispatch(deleteActionLoading())
-        axios.delete("http://localhost:4000/api/v1/device/delete", params = {params})
+        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/device/delete", params = {params})
             .then(res => dispatch(deleteAction(res)))
     }
 } 

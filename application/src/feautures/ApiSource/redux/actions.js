@@ -4,7 +4,7 @@ import { pushMessageSuccess } from "../../../layouts/Notification"
 export function fetchingTableApiSource(){
     return dispatch => {
         dispatch(fetchingLoadingAction())
-        axios.get("http://localhost:4000/api/v1/api-source/list")
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/list")
             .then(res => {
                 dispatch(fetchingAction(res))
             })
@@ -22,11 +22,50 @@ export function fetchingLoadingAction() {
         payload: {}
     }
 }
-export function createDevice(params) {
+
+export function fetchingDetailApiSource(params){
+    return dispatch => {
+        dispatch(fetchingDetailLoadingAction())
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/detail", params = {params})
+            .then(res => {
+                dispatch(fetchingDetailAction(res))
+            })
+    }
+}
+export function fetchingDetailAction(response) {
+    return {
+        type: CONSTANTS.FETCHING_DETAIL_APISOURCE,
+        payload: response
+    }
+}
+export function fetchingDetailLoadingAction() {
+    return {
+        type: CONSTANTS.FETCHING_DETAIL_APISOURCE_LOADDING,
+        payload: {}
+    }
+}
+
+export function testConnectApiSource(params) {
+    console.log("Test Connection")
+    console.log(params)
+    return dispatch => {
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/test", params = {params})
+            .then(res => dispatch(testConnectAction(res)))
+    }
+}
+
+export function testConnectAction(response) {
+    return {
+        type: CONSTANTS.TEST_CONNECT_APISOURCE,
+        payload: response
+    }
+}
+
+export function createApiSource(params) {
     console.log(params)
     return dispatch => {
         dispatch(createActionLoading())
-        axios.post("http://localhost:4000/api/v1/device/add", params)
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/add", params)
             .then(res => {
                 dispatch(createAction(res))
             })
@@ -35,7 +74,7 @@ export function createDevice(params) {
 
 export function createAction(response) {
     if (response.data.code === 200) {
-        pushMessageSuccess("Add Device Sucessfully!");
+        pushMessageSuccess("Add Api Source Sucessfully!");
     }
     return {
         type: CONSTANTS.CREATE_APISOURCE,
@@ -50,10 +89,10 @@ export function createActionLoading() {
     }
 }
 
-export function deleteDevice(params) {
+export function deleteApiSource(params) {
     return dispatch => {
         dispatch(deleteActionLoading())
-        axios.delete("http://localhost:4000/api/v1/device/delete", params = {params})
+        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/delete", params = {params})
             .then(res => dispatch(deleteAction(res)))
     }
 } 

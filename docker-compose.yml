@@ -1,0 +1,14 @@
+version: '3'
+services:
+  api-hub-ui:
+    build:
+      context: ./my-app
+    ports:
+      - "3000:3000"
+    container_name: api-hub-monitoring
+    stdin_open: true
+    volumes:
+       - ./my-app:/usr/src/app/my-app
+       - /usr/src/app/my-app/node_modules
+    environment:
+      - REACT_APP_BASE_URL=http://18.142.181.118:4000

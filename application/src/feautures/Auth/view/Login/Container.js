@@ -19,7 +19,7 @@ class Container extends Component {
         console.log(user)
         if (user.email !== null) {
             return (
-                <Navigate to={"/home"} />
+                <Navigate to={"/api-source"} />
             )
         }
         return (

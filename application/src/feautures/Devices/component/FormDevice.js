@@ -5,44 +5,43 @@ class FormDevice extends Component {
     render() {
         let { isModalVisible, handleOk, handleCancel, onFinish, data, isDetail } = this.props
         data = data !== undefined ? data : {}
-
-        const { serial, model, description } = data
-        let title_form = isDetail ? "EDIT INVERTER" : "CREATE A NEW INVERTER"
+        const { metter_id, serial, model, description, interval } = data
+        let title_form = isDetail ? "EDIT METTER" : "CREATE A NEW METTER"
         return (
             <>
                 <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >
                     <Form onFinish={onFinish}
                         ref={this.props.formRef}
-                        initialValues={{ serial: serial, model: model, description: description }}
+                        initialValues={{ metter_id: metter_id, serial: serial, model: model, description: description, interval: interval }}
                         layout="vertical"
                     >
-                        <Form.Item label="SERIAL" name="serial" rules={[
+                        <Form.Item label="Metter ID" name="metter_id" rules={[
                             {
                                 required: true,
                             },
                         ]}>
-                            <Input placeholder="Input SERIAL" />
+                            <Input placeholder="Input Metter ID" />
                         </Form.Item>
-                        <Form.Item label="MODEL" name="model" rules={[
+                        <Form.Item label="Serial" name="serial" rules={[
                             {
                                 required: true,
                             },
                         ]}>
-                            <Input placeholder="Input MODEL" />
+                            <Input placeholder="Input Serial" />
                         </Form.Item>
-                        <Form.Item label="DESCRIPTION" name="description" rules={[
+                        <Form.Item label="Description" name="description" rules={[
                             {
                                 required: true,
                             },
                         ]}>
-                            <TextArea placeholder="Input DESCRIPTION" />
+                            <TextArea placeholder="Input Description" />
                         </Form.Item>
-                        <Form.Item label="INTERVAL" name="interval" rules={[
+                        <Form.Item label="Interval" name="interval" rules={[
                             {
                                 required: true,
                             },
                         ]}>
-                            <Input placeholder="Input INTERVAL" />
+                            <Input placeholder="Input Interval" />
                         </Form.Item>
                     </Form>
                 </Modal>

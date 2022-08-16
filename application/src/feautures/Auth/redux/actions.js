@@ -4,7 +4,7 @@ import * as CONSTANTS from './constants'
 export function login (params) {
     return dispatch => {
         dispatch(loginLoadingAction())
-        axios.post("http://localhost:4000/api/v1/user/login", params)
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/user/login", params)
             .then(res => dispatch(setTokenAction(res.data)))
     }
 }

@@ -6,7 +6,9 @@ import { reducer as ApiSources } from "../feautures/ApiSource/redux/reducer";
 import { reducer as ConfigReport } from "../feautures/ConfigReport/redux/reducer";
 import { reducer as Tag } from "../feautures/Tag/redux/reducer"
 import { reducer as Auth } from "../feautures/Auth/redux/reducer";
+import { reducer as Common} from "../feautures/Common/redux/reducer";
 const rootReducer = combineReducers({
+    common: Common,
     auth: Auth,
     plant: PlantReducer,
     report: ReportReducer,

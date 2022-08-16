@@ -1,5 +1,6 @@
 import { Button, Modal, Form, Input, Checkbox } from 'antd';
 import React, { Component } from 'react';
+import "./style.scss"
 const { TextArea } = Input;
 class FormApiSource extends Component {
     state = {
@@ -12,26 +13,37 @@ class FormApiSource extends Component {
     }
     render() {
 
-        let { isModalVisible, handleOk, handleCancel, onFinish, data, isDetail } = this.props
+        let { isModalVisible, handleOk, handleCancel, handleTestConnect, handleChangeUrl, onFinish,  data, isDetail } = this.props
         data = data !== undefined ? data : {}
 
-        const { serial, model, description } = data
+        const { connection_name, url, description, interval, check_connection_time, is_authorization } = data
         let title_form = isDetail ? "EDIT API SOURCE" : "CREATE A NEW API SOURCE"
         return (
             <>
-                <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null}>
-                    <Form onFinish={onFinish}
+                <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={[
+                    <Button key="back" onClick={handleCancel}>
+                        Cancel
+                    </Button>,
+                    <Button key="submit" type="primary" onClick={handleOk}>
+                        OK
+                    </Button>,
+                    <Button key="test-connect" type="primary" className='btn-test-connection' onClick={handleTestConnect}>
+                        Test connection
+                    </Button>,
+                ]}>
+                    <Form 
+                        onFinish={onFinish}
                         ref={this.props.formRef}
-                        initialValues={{ serial: serial, model: model, description: description }}
+                        initialValues={{ connection_name: connection_name, url: url, description: description, interval: interval, check_connection_time: check_connection_time }}
                         layout="vertical"
                     >
                         <Form.Item label="Connection name" name="connection_name">
                             <Input placeholder="Connection name" />
                         </Form.Item>
                         <Form.Item label="URL" name="url">
-                            <Input placeholder="URL" />
+                            <Input placeholder="URL" onChange={handleChangeUrl} />
                         </Form.Item>
-                        <Form.Item label="Interval Time" name="interval_time">
+                        <Form.Item label="Interval Time" name="interval">
                             <Input placeholder="Interval Time" />
                         </Form.Item>
                         <Form.Item label="Check connection time" name="check_connection_time">
@@ -44,7 +56,7 @@ class FormApiSource extends Component {
                             <Checkbox onChange={(e) => this.showAuthorization(e.target.checked)} >Authorization</Checkbox>
                         </Form.Item>
                         {
-                            this.state.isAuthorization ? (
+                            this.state.isAuthorization || is_authorization ? (
                                 <>
                                     <Form.Item label="User name" name="username" >
                                         <Input placeholder="User name" />
@@ -56,14 +68,6 @@ class FormApiSource extends Component {
 
                             ) : null
                         }
-                        <Form.Item>
-                            <Button type="primary" htmlType="submit" className='btn-submit'>Submit</Button>
-                            <Button className='btn-cancel' onClick={handleCancel}>Cancel</Button>
-                            <Button htmlType="button" type="primary">Test Connection</Button>
-                            <Button htmlType="button" onClick={this.props.onReset}>
-                                Reset
-                            </Button>
-                        </Form.Item>
                     </Form>
                 </Modal>
             </>

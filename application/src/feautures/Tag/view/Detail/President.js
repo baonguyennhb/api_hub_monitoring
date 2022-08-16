@@ -1,13 +1,21 @@
-import { Table, Button, Space, Tooltip, Input } from 'antd';
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Table, Button, Space, Row, Col, Input, Modal } from 'antd';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined, CaretRightOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
-import CreateTag from '../Create/Create';
+import { CreateTag } from '../Create';
+import { Link } from 'react-router-dom';
 const { Search } = Input;
 export default class President extends Component {
-  showDeleteConfirm = () => {
-
-  }
+  confirm = (data) => {
+    Modal.confirm({
+      title: 'Confirm',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Do you want to delete Tag',
+      okText: 'Delete',
+      cancelText: 'Cancel',
+      onOk: () => this.props.handleDelete(data)
+    });
+  };
   render() {
     const { data } = this.props?.tags.list
     const dataSource = data.map((value, index) => {
@@ -24,39 +32,54 @@ export default class President extends Component {
         key: 'index',
       },
       {
-        title: 'SERIAL',
-        dataIndex: 'serial',
-        key: 'serial',
-      },
-      {
-        title: 'TAG NAME',
+        title: 'Tag name',
         dataIndex: 'name',
         key: 'name',
       },
       {
-        title: 'ACTION',
+        title: 'Parameter',
+        dataIndex: 'parameter',
+        key: 'parameter',
+      },
+      {
+        title: 'Data type',
+        dataIndex: 'data_type',
+        key: 'data_type',
+      },
+      {
+        title: 'Scale',
+        dataIndex: 'scale',
+        key: 'scale',
+      },
+      {
+        title: 'Action',
         key: 'action',
+        width: '10%',
         render: (record) => (
           <Space size="middle">
-            <Tooltip title={'Edit'}>
-              <EditOutlined onClick={() => {
-                // setFactoryrecord(record)
-                // showEdit()
-              }} />
-            </Tooltip>
-            <Tooltip title={'Delete'}>
-              <DeleteOutlined onClick={(e) => this.showDeleteConfirm(record)} />
-            </Tooltip>
+            <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
+            <Button type='danger' onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
           </Space>
         ),
       },
     ];
     return (
       <div className='main-container'>
-        <div className='title-page'>TAG MANAGERMENT</div>
+        <Row>
+          <Col span={12}>
+            <div className='title-page'>TAG MANAGERMENT </div>
+          </Col>
+          <Col span={12}>
+            <div className='title-sub'> {this.props.apiSource}  <CaretRightOutlined />{this.props.metterId}</div>
+          </Col>
+        </Row>
         <div className='container-table'>
-          <CreateTag tagName = {''} />
-          {/* <Search placeholder="input search text" enterButton /> */}
+          <Space size={"middle"}>
+            <CreateTag />
+            <Link to={window.location.pathname + "/monitor"}>
+              <Button type='primary'> MONITORING TAG</Button>
+            </Link>
+          </Space>
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
           </div>
