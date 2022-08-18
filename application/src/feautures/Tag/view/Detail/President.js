@@ -1,5 +1,5 @@
 import { Table, Button, Space, Row, Col, Input, Modal } from 'antd';
-import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined, CaretRightOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined, CaretRightOutlined, ApiOutlined, DesktopOutlined, UnorderedListOutlined} from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
 import { CreateTag } from '../Create';
@@ -33,8 +33,12 @@ export default class President extends Component {
       },
       {
         title: 'Tag name',
-        dataIndex: 'name',
         key: 'name',
+        render: (tag) => {
+          return (
+            <Link className='connecttion' to={tag.id.toString()}>{tag.name}</Link>
+          )
+        }
       },
       {
         title: 'Parameter',
@@ -70,16 +74,28 @@ export default class President extends Component {
             <div className='title-page'>TAG MANAGERMENT </div>
           </Col>
           <Col span={12}>
-            <div className='title-sub'> {this.props.apiSource}  <CaretRightOutlined />{this.props.metterId}</div>
+            <div className='title-sub'><ApiOutlined /> {this.props.apiSource}  <CaretRightOutlined />{this.props.metterId}</div>
           </Col>
         </Row>
         <div className='container-table'>
-          <Space size={"middle"}>
-            <CreateTag />
-            <Link to={window.location.pathname + "/monitor"}>
-              <Button type='primary'> MONITORING TAG</Button>
-            </Link>
-          </Space>
+          <Row>
+            <Col span={12}>
+              <Space>
+                <UnorderedListOutlined />
+                <div className='children-header-title'>LIST TAG</div>
+              </Space>
+            </Col>
+            <Col span={12}>
+              <div className='children-header-btn-create'>
+                <Space size={"middle"}>
+                  <CreateTag />
+                  <Link to={window.location.pathname + "/monitor"}>
+                    <Button type='primary'> <DesktopOutlined /> MONITORING TAG</Button>
+                  </Link>
+                </Space>
+              </div>
+            </Col>
+          </Row>
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
           </div>

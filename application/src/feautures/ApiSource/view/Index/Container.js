@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import President from './President'
-import { fetchingTableApiSource, deleteApiSource } from '../../redux/actions'
+import { fetchingTableApiSource, deleteApiSource, updateApiSource } from '../../redux/actions'
 import { notification } from 'antd'
 import { connect } from 'react-redux'
 import FormApiSource from '../../component/FormApiSource'
@@ -30,12 +30,7 @@ class Container extends Component {
     })
   }
   handleOk = () => {
-    this.setState({
-      ...this.state,
-      isModalVisible: false
-    })
-    this.openNotificationWithIcon("warning")
-    this.onResetForm()
+    this.formRef.current.submit()
   }
   handleCancel = () => {
     this.setState({
@@ -43,6 +38,18 @@ class Container extends Component {
       isModalVisible: false
     })
     //this.onResetForm()
+  }
+  onFinish = (value) => {
+    let newApiSource = {
+      id: this.state.data.id,
+      ...value
+    }
+    this.props.updateApiSource(newApiSource)
+    this.onResetForm()
+    this.setState({
+      ...this.state,
+      isModalVisible: false
+    })
   }
   onResetForm = () => {
     console.log("reset form")
@@ -73,6 +80,7 @@ class Container extends Component {
           isDetail={true}
           data={this.state.data}
           formRef={this.formRef}
+          onFinish = {this.onFinish}
         />
       </>
     )
@@ -94,7 +102,10 @@ function mapDispatchToProps(dispatch) {
     },
     deleteApiSource: (id) => {
       dispatch(deleteApiSource(id))
-    }
+    },
+    updateApiSource: (api_source) => {
+      dispatch(updateApiSource(api_source))
+    } 
   }
 }
 function mapStateToProps(state) {

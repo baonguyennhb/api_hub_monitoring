@@ -46,6 +46,32 @@ export function fetchingMonitorLoadingAction() {
     }
 }
 
+// Log monitoring tag 
+
+export function fetchingMonitorLogTag(params) {
+    return dispatch => {
+        dispatch(fetchingMonitorLogLoadingAction)
+        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/tag/log', params = {params})
+            .then(res => {
+                dispatch(fetchingMonitorLogAction(res))
+            })
+    }
+}
+export function fetchingMonitorLogAction(response) {
+    return {
+        type: CONSTANTS.FETCHING_LOG_TAG,
+        payload: response
+    }
+}
+export function fetchingMonitorLogLoadingAction() {
+    return {
+        type: CONSTANTS.FETCHING_LOG_TAG_LOADING,
+        payload: {}
+    }
+}
+
+// Log monitoring tag
+
 export function createTag(params) {
     console.log(params)
     return dispatch => {
@@ -70,6 +96,33 @@ export function createAction(response) {
 export function createActionLoading() {
     return {
         type: CONSTANTS.CREATE_TAG_LOADING,
+        payload: {}
+    }
+}
+
+// Update Tag 
+
+export function updateTag (params) {
+    return dispatch => {
+        dispatch(updateActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/tag/edit", params, { params : {id: params.id}})
+            .then(res => dispatch(updateAction(res)))
+    }
+}
+
+export function updateAction(res) {
+    if (res.data.code === 200) {
+        pushMessageSuccess("Update Tag Sucessfully!")
+    }
+    return {
+        type: CONSTANTS.UPDATE_TAG,
+        payload: res
+    }
+}
+
+export function updateActionLoading() {
+    return {
+        type: CONSTANTS.UPDATE_TAG_LOADING,
         payload: {}
     }
 }

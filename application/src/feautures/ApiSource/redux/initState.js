@@ -15,6 +15,11 @@ const initState = {
         data: {},
         loading: false,
     },
+    edit: {
+        error: {},
+        data: {},
+        loading: false
+    },
     delete: {
         error: {},
         data: {},

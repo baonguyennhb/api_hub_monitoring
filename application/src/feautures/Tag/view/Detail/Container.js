@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { notification } from 'antd';
 import President from './President'
-import { fetchingTableTag } from '../../redux'
+import { fetchingTableTag, updateTag } from '../../redux'
 import { fetchingDetailApiSource } from '../../../ApiSource/redux'
 import { deleteTag } from '../../redux'
 import { connect } from 'react-redux'
@@ -29,6 +29,7 @@ class Container extends Component {
           isDetail={true}
           data={this.state.data}
           formRef={this.formRef}
+          onFinish={this.onFinish}
         />
       </>
     )
@@ -59,17 +60,12 @@ class Container extends Component {
         name: value.name,
         parameter: value.parameter,
         scale: value.scale,
-        //interval: value.interval
+        data_type: value.data_type
       })
     })
   }
   handleOk = () => {
-    this.openNotificationWithIcon('warning')
-    this.setState({
-      ...this.state,
-      isModalVisible: false
-    })
-    this.onResetForm()
+    this.formRef.current.submit()
   }
   handleCancel = () => {
     this.setState({
@@ -81,6 +77,20 @@ class Container extends Component {
   onResetForm = () => {
     console.log("reset form")
     this.formRef.current.resetFields();
+  }
+  onFinish = (value) => {
+    let newTag = {
+      id: this.state.data.id,
+      name: value.name,
+      scale: value.scale,
+      data_type: value.data_type
+    }
+    this.props.updateTag(newTag)
+    this.setState({
+      ...this.state,
+      isModalVisible: false
+    })
+    this.onResetForm()
   }
   openNotificationWithIcon = type => {
     notification[type]({
@@ -102,6 +112,9 @@ function mapDispatchToProps(dispatch) {
     },
     fetchingDetailApiSource: (id) => {
       dispatch(fetchingDetailApiSource(id))
+    },
+    updateTag: (tag) => {
+      dispatch(updateTag(tag))
     }
   }
 }

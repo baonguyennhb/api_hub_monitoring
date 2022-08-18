@@ -43,6 +43,30 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
+        case CONSTANTS.UPDATE_TAG: {
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    error: payload.error,
+                    data: payload.data,
+                    loading: false
+                },
+                reload: true
+            }
+        }
+        case CONSTANTS.UPDATE_TAG_LOADING: {
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    error: {},
+                    data: {},
+                    loading: true
+                },
+                reload: false
+            }
+        }
         case CONSTANTS.DELETE_TAG:
             return {
                 ...state,
@@ -77,6 +101,23 @@ export function reducer(state = initState, action) {
                 ...state,
                 monitor: {
                     ...state.monitor,
+                    loading: true
+                }
+            }
+        case CONSTANTS.FETCHING_LOG_TAG:
+            let dataPayloadLog = payload.data !== undefined ? payload.data : []
+            return {
+                ...state,
+                log: {
+                    data: dataPayloadLog.data,
+                    loading: false
+                }
+            }
+        case CONSTANTS.FETCHING_LOG_TAG_LOADING:
+            return {
+                ...state,
+                log: {
+                    ...state.log,
                     loading: true
                 }
             }

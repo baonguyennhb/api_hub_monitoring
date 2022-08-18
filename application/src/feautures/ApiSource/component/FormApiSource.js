@@ -18,6 +18,7 @@ class FormApiSource extends Component {
 
         const { connection_name, url, description, interval, check_connection_time, is_authorization } = data
         let title_form = isDetail ? "EDIT API SOURCE" : "CREATE A NEW API SOURCE"
+        let isDisable = isDetail ? true : false
         return (
             <>
                 <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={[

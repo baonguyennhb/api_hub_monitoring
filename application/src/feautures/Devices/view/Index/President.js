@@ -1,5 +1,5 @@
 import { Table, Space, Tooltip, Modal, Button, Tag, Col, Row } from 'antd';
-import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined, ApiOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import React, { Component } from 'react'
 import './style.css'
 import { CreateDevice } from '../CreateF';
@@ -83,11 +83,23 @@ export default class President extends Component {
             <div className='title-page'>DEVICE MANAGERMENT </div>
           </Col>
           <Col span={12}>
-            <div className='title-sub'>{this.props.connection}</div>
+            <div className='title-sub'><ApiOutlined /> {this.props.connection}</div>
           </Col>
         </Row>
         <div className='container-table'>
-          <CreateDevice />
+          <Row>
+            <Col span={12}>
+              <Space>
+                <UnorderedListOutlined />
+                <div className='children-header-title'>LIST DEVICE</div>
+              </Space>
+            </Col>
+            <Col span={12}>
+              <div className='children-header-btn-create'>
+                <CreateDevice />
+              </div>
+            </Col>
+          </Row>
           <div className='table'>
             <Table columns={columns} bordered dataSource={dataSource} />
           </div>

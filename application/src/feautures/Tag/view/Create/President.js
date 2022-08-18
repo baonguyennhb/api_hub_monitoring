@@ -1,4 +1,5 @@
 import { Button, Tooltip } from 'antd';
+import { PlusCircleOutlined  } from '@ant-design/icons';
 import React, { Component } from 'react';
 import FormDevice from '../../component/FormTag';
 class President extends Component {
@@ -8,7 +9,8 @@ class President extends Component {
             <>
                 <Tooltip color={'blue'} title={'Create New Device'}>
                     <Button type='primary' className='btn-insert' onClick={showModal}>
-                        Create
+                        <PlusCircleOutlined/>
+                        CREATE
                     </Button>
                 </Tooltip>
                 <FormDevice {...this.props}/>

@@ -89,6 +89,35 @@ export function createActionLoading() {
     }
 }
 
+// Update Api-source
+
+export function updateApiSource (params) {
+    return dispatch => {
+        dispatch(updateActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/edit", params, { params : {id: params.id}})
+            .then(res => dispatch(updateAction(res)))
+    }
+}
+
+export function updateAction(res) {
+    if (res.data.code === 200) {
+        pushMessageSuccess("Update Api-Source Sucessfully!")
+    }
+    return {
+        type: CONSTANTS.UPDATE_APISOURCE,
+        payload: res
+    }
+}
+
+export function updateActionLoading() {
+    return {
+        type: CONSTANTS.UPDATE_APISOURCE_LOADING,
+        payload: {}
+    }
+}
+
+// Delete API source
+
 export function deleteApiSource(params) {
     return dispatch => {
         dispatch(deleteActionLoading())

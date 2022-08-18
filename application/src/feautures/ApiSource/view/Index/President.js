@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Table, Button, Space, Tooltip, Tag, Modal } from 'antd';
-import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import { Table, Button, Space, Tooltip, Tag, Modal, Row, Col } from 'antd';
+import { EditOutlined, DeleteOutlined, ExclamationCircleOutlined, UnorderedListOutlined, } from '@ant-design/icons';
 import { CreateApiSource } from '../Create';
 import { Link } from 'react-router-dom';
 import "./style.css"
@@ -66,6 +66,7 @@ export default class President extends Component {
             {
                 title: 'Action',
                 key: 'action',
+                width: "10%",
                 render: (record) => (
                     <Space size="middle">
                         <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
@@ -78,9 +79,21 @@ export default class President extends Component {
             <div className='main-container'>
                 <div className='title-page'>API - SOURCE MANAGERMENT</div>
                 <div className='container-table'>
-                    <CreateApiSource />
+                    <Row>
+                        <Col span={12}>
+                            <Space>
+                                <UnorderedListOutlined />
+                                <div className='children-header-title'>LIST API SOURCE</div>
+                            </Space>
+                        </Col>
+                        <Col span={12}>
+                            <div className='children-header-btn-create'>
+                                <CreateApiSource />
+                            </div>
+                        </Col>
+                    </Row>
                     <div className='table'>
-                        <Table columns={columns} dataSource={dataSource} />
+                        <Table columns={columns} dataSource={dataSource} bordered />
                     </div>
                 </div>
             </div>

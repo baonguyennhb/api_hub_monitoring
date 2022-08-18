@@ -7,6 +7,7 @@ class FormDevice extends Component {
         data = data !== undefined ? data : {}
         const { metter_id, serial, model, description, interval } = data
         let title_form = isDetail ? "EDIT METTER" : "CREATE A NEW METTER"
+        let isDisable = isDetail ? true : false
         return (
             <>
                 <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >
@@ -20,20 +21,16 @@ class FormDevice extends Component {
                                 required: true,
                             },
                         ]}>
-                            <Input placeholder="Input Metter ID" />
+                            <Input placeholder="Input Metter ID" disabled = {isDisable} />
                         </Form.Item>
                         <Form.Item label="Serial" name="serial" rules={[
                             {
                                 required: true,
                             },
                         ]}>
-                            <Input placeholder="Input Serial" />
+                            <Input placeholder="Input Serial" disabled = {isDisable}/>
                         </Form.Item>
-                        <Form.Item label="Description" name="description" rules={[
-                            {
-                                required: true,
-                            },
-                        ]}>
+                        <Form.Item label="Description" name="description" >
                             <TextArea placeholder="Input Description" />
                         </Form.Item>
                         <Form.Item label="Interval" name="interval" rules={[

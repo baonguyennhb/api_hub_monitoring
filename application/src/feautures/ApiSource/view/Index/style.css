@@ -1,3 +1,11 @@
 .connecttion {
     color: black;
 }
+.children-header-btn-create {
+    float: right;
+}
+.children-header-title {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+}

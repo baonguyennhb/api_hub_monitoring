@@ -38,9 +38,6 @@ class President extends Component {
                         Đăng nhập
                     </AntButton>
                 </Form>
-                <div className="form-option">
-                    Không có tài khoản? <Link to={'/register'}>Đăng ký</Link>
-                </div>
             </div>
         )
     }
