@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import President from './President'
-import { fetchingTableDevice, deleteDevice } from '../../redux'
+import { fetchingTableDevice, deleteDevice, updateDevice } from '../../redux'
 import { fetchingDetailApiSource } from '../../../ApiSource/redux'
 import { connect } from 'react-redux'
 import { notification } from 'antd'
@@ -27,12 +27,7 @@ class Container extends Component {
     })
   }
   handleOk = () => {
-    this.setState({
-      ...this.state,
-      isModalVisible: false
-    })
-    this.openNotificationWithIcon("warning")
-    this.onResetForm()
+   this.formRef.current.submit()
   }
   handleCancel = () => {
     this.setState({
@@ -40,6 +35,18 @@ class Container extends Component {
       isModalVisible: false
     })
     //this.onResetForm()
+  }
+  onFinish = (value) => {
+    let newDevice = {
+      ...value,
+      id: this.state.data.id
+    }
+    this.props.updateDevice(newDevice)
+    this.setState({
+      ...this.state,
+      isModalVisible: false
+    })
+    this.onResetForm()
   }
   onResetForm = () => {
     console.log("reset form")
@@ -71,6 +78,7 @@ class Container extends Component {
           isDetail={true}
           data={this.state.data}
           formRef={this.formRef}
+          onFinish = {this.onFinish}
         />
       </>
     )
@@ -100,6 +108,9 @@ function mapDispatchToProps(dispatch) {
     },
     fetchingDetailApiSource: (id) => {
       dispatch(fetchingDetailApiSource(id))
+    },
+    updateDevice: (new_device) => {
+      dispatch(updateDevice(new_device))
     }
   }
 }

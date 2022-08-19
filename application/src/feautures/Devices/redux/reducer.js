@@ -51,6 +51,30 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
+        case CONSTANTS.UPDATE_DEVICE: {
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    error: payload.error,
+                    data: payload.data,
+                    loading: false
+                },
+                reload: true
+            }
+        }
+        case CONSTANTS.UPDATE_DEVICE_LOADING: {
+            return {
+                ...state,
+                update: {
+                    ...state.update,
+                    error: {},
+                    data: {},
+                    loading: true
+                },
+                reload: false
+            }
+        }
         case CONSTANTS.DELETE_DEVICE:
             return {
                 ...state,

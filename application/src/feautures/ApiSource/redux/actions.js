@@ -1,6 +1,6 @@
 import * as CONSTANTS  from './constants'
 import axios from 'axios'
-import { pushMessageSuccess } from "../../../layouts/Notification"
+import { pushMessageError, pushMessageSuccess } from "../../../layouts/Notification"
 export function fetchingTableApiSource(){
     return dispatch => {
         dispatch(fetchingLoadingAction())
@@ -49,12 +49,17 @@ export function testConnectApiSource(params) {
     console.log("Test Connection")
     console.log(params)
     return dispatch => {
-        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/test", params = {params})
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/test-connect", params = {params})
             .then(res => dispatch(testConnectAction(res)))
     }
 }
 
 export function testConnectAction(response) {
+    if (response.data.data.code == 200) {
+        pushMessageSuccess(response.data.data.status)
+    } else {
+        pushMessageError(response.data.data.status)
+    }
     return {
         type: CONSTANTS.TEST_CONNECT_APISOURCE,
         payload: response

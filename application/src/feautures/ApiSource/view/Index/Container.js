@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import President from './President'
-import { fetchingTableApiSource, deleteApiSource, updateApiSource } from '../../redux/actions'
+import { fetchingTableApiSource, deleteApiSource, updateApiSource, testConnectApiSource } from '../../redux/actions'
 import { notification } from 'antd'
 import { connect } from 'react-redux'
 import FormApiSource from '../../component/FormApiSource'
@@ -56,8 +56,19 @@ class Container extends Component {
     this.formRef.current.resetFields();
   }
   handleDelete = (data) => {
-    this.props.deleteApiSource({id: data.id})
-  } 
+    this.props.deleteApiSource({ id: data.id })
+  }
+  handleChangeUrl = (e) => {
+    this.setState({
+      ...this.state,
+      data: {
+        url: e.target.value
+      }
+    })
+  }
+  handleTestConnect = (params) => {
+    this.props.testConnectApiSource(this.state.data)
+  }
   openNotificationWithIcon = type => {
     notification[type]({
       message: 'Feauture is being updated!',
@@ -71,7 +82,7 @@ class Container extends Component {
       <>
         <President {...this.props}
           showModal={this.showModal}
-          handleDelete = {this.handleDelete}
+          handleDelete={this.handleDelete}
         />
         <FormApiSource {...this.props}
           handleOk={this.handleOk}
@@ -80,7 +91,8 @@ class Container extends Component {
           isDetail={true}
           data={this.state.data}
           formRef={this.formRef}
-          onFinish = {this.onFinish}
+          onFinish={this.onFinish}
+          handleTestConnect = {this.handleTestConnect}
         />
       </>
     )
@@ -105,7 +117,10 @@ function mapDispatchToProps(dispatch) {
     },
     updateApiSource: (api_source) => {
       dispatch(updateApiSource(api_source))
-    } 
+    },
+    testConnectApiSource: (params) => {
+      dispatch(testConnectApiSource(params))
+    }
   }
 }
 function mapStateToProps(state) {

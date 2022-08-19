@@ -65,6 +65,34 @@ export function createActionLoading() {
     }
 }
 
+
+// Update Tag 
+
+export function updateDevice (params) {
+    return dispatch => {
+        dispatch(updateActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/device/edit", params, { params : {id: params.id}})
+            .then(res => dispatch(updateAction(res)))
+    }
+}
+
+export function updateAction(res) {
+    if (res.data.code === 200) {
+        pushMessageSuccess("Update Device Sucessfully!")
+    }
+    return {
+        type: CONSTANTS.UPDATE_DEVICE,
+        payload: res
+    }
+}
+
+export function updateActionLoading() {
+    return {
+        type: CONSTANTS.UPDATE_DEVICE_LOADING,
+        payload: {}
+    }
+}
+
 export function deleteDevice(params) {
     return dispatch => {
         dispatch(deleteActionLoading())
