@@ -2,6 +2,7 @@ import axios from 'axios'
 import * as CONSTANTS from './constants'
 import { pushMessageSuccess } from "../../../layouts/Notification"
 
+// Feching All Tag by Device
 export function fetchingTableTag(params) {
     return dispatch => {
         dispatch(fetchingLoadingAction)
@@ -23,6 +24,7 @@ export function fetchingLoadingAction() {
         payload: {}
     }
 }
+// Feching All Tag by Device
 
 export function fetchingMonitorTag(params) {
     return dispatch => {

@@ -38,13 +38,25 @@ class FormApiSource extends Component {
                         initialValues={{ connection_name: connection_name, url: url, description: description, interval: interval, check_connection_time: check_connection_time }}
                         layout="vertical"
                     >
-                        <Form.Item label="Connection name" name="connection_name">
+                        <Form.Item label="Connection name" name="connection_name" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="Connection name" />
                         </Form.Item>
-                        <Form.Item label="URL" name="url">
+                        <Form.Item label="URL" name="url" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="URL" onChange={handleChangeUrl} />
                         </Form.Item>
-                        <Form.Item label="Interval Time" name="interval">
+                        <Form.Item label="Interval Time" name="interval" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="Interval Time" />
                         </Form.Item>
                         <Form.Item label="Check connection time" name="check_connection_time">

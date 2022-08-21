@@ -12,7 +12,7 @@ import { ApiSource } from './feautures/ApiSource/view/Index';
 import { Device } from './feautures/Devices/view/Index';
 import { ConfigReport } from './feautures/ConfigReport/view/Detail';
 import { TagPage } from './feautures/Tag/view/Detail';
-import { DataHubPage } from './feautures/DataHub/view';
+import { DataHubPage } from './feautures/DataHub/view/Index';
 import { MonitorTagPage } from './feautures/Tag/view/Monitor';
 import { MonitorLogTagPage } from './feautures/Tag/view/MonitorLog';
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path='/devices' element={<AppLayout><Device/></AppLayout>} />
           <Route path='/config/report' element={<AppLayout><ConfigReport /></AppLayout>} />
           <Route path='/tags' element={<AppLayout><TagPage /></AppLayout>} />
-          <Route path='/data-hub' element={<AppLayout><DataHubPage /></AppLayout>} />
+          <Route path='/data-hub' element={<AppLayout>< DataHubPage /></AppLayout>} />
         </Routes>
       </Router>
     </Provider>

@@ -16,13 +16,25 @@ class FormTag extends Component {
                         initialValues={{ name: name, parameter: parameter, scale: scale }}
                         layout="vertical"
                     >
-                        <Form.Item label="Tagname" name="name" >
+                        <Form.Item label="Tagname" name="name" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="Input Tag name" />
                         </Form.Item>
-                        <Form.Item label="Paramter" name="parameter" >
+                        <Form.Item label="Paramter" name="parameter" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="Input Parameter" disabled = {isDisable} />
                         </Form.Item>
-                        <Form.Item label="Data type" name="data_type" >
+                        <Form.Item label="Data type" name="data_type" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Select
                                 placeholder="Select Data type"
                                 allowClear
@@ -31,7 +43,11 @@ class FormTag extends Component {
                                 <Option value="Number">Number</Option>
                             </Select>
                         </Form.Item>
-                        <Form.Item label="Scale" name="scale" >
+                        <Form.Item label="Scale" name="scale" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
                             <Input placeholder="Input Scale" />
                         </Form.Item>
                     </Form>

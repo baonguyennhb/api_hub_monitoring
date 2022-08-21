@@ -1,0 +1,51 @@
+.btn-download {
+    float: right;
+    right: 10px;
+}
+.children-container {
+    width: 100%;
+}
+.children-container
+.form-config-mqtt {
+    background: white;
+    padding: 20px 15px;
+}
+.children-container
+.form-config-mqtt
+.header-config-mqtt {
+    font-size: 14;
+    font-weight: 600;
+}
+.form-config-mqtt
+.form {
+    margin-top: 15px;
+    height: 74vh;
+}
+.form
+.ant-form-item  {
+    margin-bottom: 10px;
+}
+
+.children-container
+.table-tag-mqtt {
+    background: white;
+    padding: 20px 10px;
+}
+.table-tag-mqtt
+.header-table-tag_mqtt {
+    
+}
+.table-tag-mqtt
+.table-list-tag {
+    margin-top: 15px;
+}
+.header-table-tag_mqtt
+.header-title {
+    font-size: 14;
+    font-weight: 600;
+}
+.header-table-tag_mqtt
+.btn-add-tag-container {
+    float: right;
+    margin-top: -10px;
+}

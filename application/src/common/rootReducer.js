@@ -7,6 +7,7 @@ import { reducer as ConfigReport } from "../feautures/ConfigReport/redux/reducer
 import { reducer as Tag } from "../feautures/Tag/redux/reducer"
 import { reducer as Auth } from "../feautures/Auth/redux/reducer";
 import { reducer as Common} from "../feautures/Common/redux/reducer";
+import { reducer as DataHub } from "../feautures/DataHub/redux/reducer";
 const rootReducer = combineReducers({
     common: Common,
     auth: Auth,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     device: Device,
     apiSource: ApiSources,
     configReport: ConfigReport,
-    tag: Tag
+    tag: Tag,
+    data_hub: DataHub
 })
 
 export default rootReducer

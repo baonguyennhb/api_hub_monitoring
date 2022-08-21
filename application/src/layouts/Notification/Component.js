@@ -14,8 +14,8 @@ export const pushMessageSuccess = (content) => {
     AntMessage.success(content);
 };
 
-export const pushMessageError = () => {
-    AntMessage.error('Xin lỗi, có lỗi trong quá trình xử lý.');
+export const pushMessageError = (content) => {
+    AntMessage.error(content);
 };
 
 export const pushMessageLoading = () => {
