@@ -129,5 +129,33 @@ export function deleteActionLoading() {
     }
 }
 
+// Download Config
+
+export function downloadConfig(params) {
+    return dispatch => {
+        dispatch(downloadActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/upload-config", params)
+            .then(res => dispatch(downloadAction(res)))
+    }
+}
+
+export function downloadAction(response) {
+    if (response.data.code === 200) {
+        pushMessageSuccess("Upload Config successfully!")
+    } else if (response.data.code === 400) {
+        pushMessageError("Upload Config Failed Because API-HUB not connect DATA-HUB!")
+    }
+    return {
+        type: CONSTANTS.DOWNLOAD_CONFIG,
+        payload: response
+    }
+}
+export function downloadActionLoading() {
+    return {
+        type:CONSTANTS.DOWNLOAD_CONFIG_LOADING,
+        payload: {}
+    }
+}
+
 
 

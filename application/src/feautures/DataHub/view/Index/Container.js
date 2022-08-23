@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag } from '../../redux'
+import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig } from '../../redux'
 import President from './President'
 
 class Container extends Component {
@@ -17,8 +17,13 @@ class Container extends Component {
         this.setState({
           loading: false
         })
+        this.formRef.current.submit()
       }, 3000)
     })
+  }
+  onFinish = (value) => {
+    console.log("SubmitForm")
+    this.props.downloadConfig(value)
   }
   handleRemoveTag = (data) => {
     this.props.removeTag({id: data.id})
@@ -44,6 +49,7 @@ class Container extends Component {
         handleDownloadConfigMqtt={this.handleDownloadConfigMqtt}
         formRef={this.formRef}
         handleRemoveTag = {this.handleRemoveTag}
+        onFinish = {this.onFinish}
       />
     )
   }
@@ -59,6 +65,9 @@ export function mapDispatchToProps(dispatch) {
     },
     removeTag: (id) => {
       dispatch(removeTag(id))
+    },
+    downloadConfig: (params) => {
+      dispatch(downloadConfig(params))
     }
   }
 }

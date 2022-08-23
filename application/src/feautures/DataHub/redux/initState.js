@@ -16,6 +16,11 @@ const initState = {
         data: {},
         loading: false,
     },
+    download: {
+        error: {},
+        data: {},
+        loading: false
+    },
     reload: false
 }
 

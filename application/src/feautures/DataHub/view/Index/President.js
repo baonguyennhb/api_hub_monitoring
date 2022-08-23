@@ -101,7 +101,7 @@ export default class President extends Component {
                                     </Space>
                                 </div>
                                 <div className='form'>
-                                    <FormMqtt data={data} formRef={this.props.formRef} />
+                                    <FormMqtt data={data} formRef={this.props.formRef} onFinish = {this.props.onFinish} />
                                 </div>
                             </div>
                         </Col>

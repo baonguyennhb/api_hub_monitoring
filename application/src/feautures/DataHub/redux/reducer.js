@@ -75,6 +75,26 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
+        case CONSTANTS.DOWNLOAD_CONFIG:
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    error: payload.error,
+                    data: payload.data,
+                    loading: false
+                },
+            }
+        case CONSTANTS.DOWNLOAD_CONFIG_LOADING:
+            return {
+                ...state,
+                download: {
+                    ...state.download,
+                    error: {},
+                    data: {},
+                    loading: true
+                },
+            }
         default:
             return state
     }
