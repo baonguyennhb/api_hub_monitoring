@@ -74,7 +74,7 @@ export default class President extends Component {
             <div className='title-page'>TAG MANAGERMENT </div>
           </Col>
           <Col span={12}>
-            <div className='title-sub'><ApiOutlined /> {this.props.apiSource}  <CaretRightOutlined />{this.props.metterId}</div>
+            <div className='title-sub'> <span onClick={() => window.history.go(-1)} ><ApiOutlined /> {this.props.apiSource} </span> <CaretRightOutlined />{this.props.metterId}</div>
           </Col>
         </Row>
         <div className='container-table'>

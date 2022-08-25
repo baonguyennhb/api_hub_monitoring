@@ -124,4 +124,4 @@ function mapStateToProps(state) {
     apiSource: state.apiSource
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Container)
+export default (connect(mapStateToProps, mapDispatchToProps)(Container))

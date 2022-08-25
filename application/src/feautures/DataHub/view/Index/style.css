@@ -37,6 +37,7 @@
 .table-tag-mqtt
 .table-list-tag {
     margin-top: 15px;
+    overflow: auto;
 }
 .header-table-tag_mqtt
 .header-title {

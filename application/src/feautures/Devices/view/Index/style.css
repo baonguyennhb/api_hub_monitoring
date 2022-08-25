@@ -7,6 +7,7 @@
 }
 .container-table .table {
     margin-top: 15px;
+    overflow: auto;
 }
 .container-table
 .table
