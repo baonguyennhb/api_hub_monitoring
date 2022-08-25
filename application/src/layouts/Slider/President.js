@@ -9,7 +9,7 @@ import {
     PieChartOutlined
 } from '@ant-design/icons';
 import { AntAvatar } from "../AntAvatar";
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Space } from 'antd';
 import './style.css'
 const { Sider } = Layout;
 export default class President extends Component {
@@ -44,16 +44,16 @@ export default class President extends Component {
                 <Menu
                     className="menu-account"
                     mode="inline"
-                    selectable={false}
+                    // selectable={false}
                 //defaultOpenKeys={collapsed ? [] : ['account']}
                 >
                     <Menu.Divider />
                     <Menu.ItemGroup
-                        //className={collapsed ? 'sub-collapsed' : ''}
+                        className={this.props.common.collapse ? 'sub-collapsed' : ''}
                         key="account"
                         icon={<UserOutlined />}
                         title={
-                            <span><UserOutlined />Account</span>
+                            <Space><UserOutlined />Account</Space>
                         }
                     >
                         <Menu.Item

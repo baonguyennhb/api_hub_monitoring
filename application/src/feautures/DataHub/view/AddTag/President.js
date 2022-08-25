@@ -12,14 +12,7 @@ class President extends Component {
                     <PlusCircleOutlined />
                     ADD TAG
                 </Button>
-                <Modal title={"Add Tag"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={[
-                    <Button key="back" onClick={handleCancel}>
-                        Cancel
-                    </Button>,
-                    // <Button key="submit" type="primary" onClick={handleOk}>
-                    //     OK
-                    // </Button>,
-                ]}
+                <Modal title={"Add Tag"} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer= {null}
                     width={650}
                 >
                     <TableTagAdd tags = {tags} />

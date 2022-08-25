@@ -1,9 +1,10 @@
-import { Button, Col, Row, Space, Table, Tooltip, Modal } from 'antd'
+import { Button, Col, Row, Space, Table, Tooltip, Modal, Tabs } from 'antd'
 import React, { Component } from 'react'
 import FormMqtt from '../../component/FormMqtt'
 import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
 import './style.css'
 import { AddTag } from '../AddTag';
+const { TabPane } = Tabs;
 export default class President extends Component {
     confirm = (data) => {
         Modal.confirm({
@@ -91,8 +92,8 @@ export default class President extends Component {
                     </Col>
                 </Row>
                 <div className='children-container'>
-                    <Row gutter={16}>
-                        <Col span={6}>
+                    <Tabs size='small' type='card'>
+                        <TabPane tab={<> <SettingOutlined />MQTT CONFIGURATION</>} key="1">
                             <div className='form-config-mqtt'>
                                 <div className='header-config-mqtt'>
                                     <Space size={"small"}>
@@ -101,11 +102,18 @@ export default class President extends Component {
                                     </Space>
                                 </div>
                                 <div className='form'>
-                                    <FormMqtt data={data} formRef={this.props.formRef} onFinish = {this.props.onFinish} />
+                                    <FormMqtt data={data} formRef={this.props.formRef} onFinish={this.props.onFinish} />
                                 </div>
                             </div>
-                        </Col>
-                        <Col span={18}>
+                        </TabPane>
+                        <TabPane tab={
+                            <>
+                                <TagsOutlined />
+                                TAG LIST
+                            </>
+                        }
+                            key={"2"}
+                        >
                             <div className='table-tag-mqtt'>
                                 <div className='header-table-tag_mqtt'>
                                     <Row>
@@ -128,8 +136,8 @@ export default class President extends Component {
                                     <Table dataSource={dataSource} columns={columns} bordered />
                                 </div>
                             </div>
-                        </Col>
-                    </Row>
+                        </TabPane>
+                    </Tabs>
                 </div>
             </div>
         )

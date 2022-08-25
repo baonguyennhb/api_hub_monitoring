@@ -1,6 +1,7 @@
 import { Button, Table } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { PlusCircleOutlined } from '@ant-design/icons';
 import { addTag } from '../redux';
 import React, { useState } from 'react';
 
@@ -19,7 +20,7 @@ const columns = [
     }
 ];
 
-const TableTagAdd = ({tags}) => {
+const TableTagAdd = ({ tags }) => {
     const dispatch = useDispatch()
     const loading = useSelector((state) => state.data_hub.addTag.loading)
     const data = tags?.map((tag, index) => {
@@ -58,7 +59,8 @@ const TableTagAdd = ({tags}) => {
                     marginBottom: 16,
                 }}
             >
-                <Button type="primary" onClick={start} disabled={!hasSelected} loading = {loading}>
+                <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}>
+                    <PlusCircleOutlined />
                     ADD
                 </Button>
                 <span
