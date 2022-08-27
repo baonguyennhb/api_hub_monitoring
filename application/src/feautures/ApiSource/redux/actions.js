@@ -81,6 +81,9 @@ export function createAction(response) {
     if (response.data.code === 200) {
         pushMessageSuccess("Add Api Source Sucessfully!");
     }
+    if (response.data.code === 400) {
+        pushMessageError(response.data.message);
+    }
     return {
         type: CONSTANTS.CREATE_APISOURCE,
         payload: response

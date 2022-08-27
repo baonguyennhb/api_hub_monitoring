@@ -1,5 +1,6 @@
-import { Table, Button, Space, Row, Col} from 'antd';
+import { Table, Button, Space, Row, Col } from 'antd';
 import { CaretRightOutlined, ApiOutlined } from '@ant-design/icons';
+import NavigateButton from '../../../../common/NavigateButton';
 import React, { Component } from 'react'
 import './style.css'
 export default class President extends Component {
@@ -46,7 +47,7 @@ export default class President extends Component {
             <div className='title-page'>TAG LOG MONITORING </div>
           </Col>
           <Col span={12}>
-            <div className='title-sub'> <ApiOutlined/> {this.props.apiSource}  <CaretRightOutlined />{this.props.metterId}</div>
+            <div className='title-sub'> <ApiOutlined /> <NavigateButton buttonTitle={this.props.apiSource} route={`/api-source/${this.props.apiSourceId}`} isReplaced={true} />  <CaretRightOutlined /><NavigateButton buttonTitle={this.props.metterId} route={`/api-source/${this.props.apiSourceId}/${this.props.metterId}`} isReplaced={true} /></div>
           </Col>
         </Row>
         <div className='container-table'>

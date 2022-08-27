@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as CONSTANTS from './constants'
-import { pushMessageSuccess } from "../../../layouts/Notification"
+import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notification"
 export function fetchingTableDevice( params) {
     return dispatch => {
         dispatch(fetchingLoadingAction)
@@ -51,6 +51,9 @@ export function createDevice(params) {
 export function createAction(response) {
     if (response.data.code === 200) {
         pushMessageSuccess("Add Device Sucessfully!");
+    }
+    if (response.data.code === 400) {
+        pushMessageError(response.data.message);
     }
     return {
         type: CONSTANTS.CREATE_DEVICE,

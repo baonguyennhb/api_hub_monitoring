@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as CONSTANTS from './constants'
-import { pushMessageSuccess } from "../../../layouts/Notification"
+import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notification"
 
 // Feching All Tag by Device
 export function fetchingTableTag(params) {
@@ -87,7 +87,10 @@ export function createTag(params) {
 
 export function createAction(response) {
     if (response.data.code === 200) {
-        pushMessageSuccess("Add Device Sucessfully!");
+        pushMessageSuccess("Add Tag Sucessfully!");
+    }
+    if (response.data.code === 400) {
+        pushMessageError(response.data.message);
     }
     return {
         type: CONSTANTS.CREATE_TAG,

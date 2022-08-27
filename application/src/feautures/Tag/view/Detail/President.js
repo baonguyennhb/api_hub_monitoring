@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import './style.css'
 import { CreateTag } from '../Create';
 import { Link } from 'react-router-dom';
+import NavigateButton from '../../../../common/NavigateButton';
 const { Search } = Input;
 export default class President extends Component {
   confirm = (data) => {
@@ -74,7 +75,7 @@ export default class President extends Component {
             <div className='title-page'>TAG MANAGERMENT </div>
           </Col>
           <Col span={12}>
-            <div className='title-sub'> <span onClick={() => window.history.go(-1)} ><ApiOutlined /> {this.props.apiSource} </span> <CaretRightOutlined />{this.props.metterId}</div>
+            <div className='title-sub'> <ApiOutlined /> <NavigateButton buttonTitle = {this.props.apiSource} route = {`/api-source/${this.props.apiSourceId}`} isReplaced = {true} /> <CaretRightOutlined />{this.props.metterId}</div>
           </Col>
         </Row>
         <div className='container-table'>

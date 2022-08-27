@@ -20,6 +20,7 @@ class Container extends Component {
           handleDelete={this.handleDelete}
           showModal={this.showModal}
           apiSource={this.props.apiSource.detail.data.connection_name}
+          apiSourceId = {this.props.apiSource.detail.data.id?.toString()}
           metterId={window.location.pathname.split("/")[3]}
         />
         <FormTag {...this.props}

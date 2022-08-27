@@ -11,6 +11,7 @@ class Container extends Component {
       <>
         <President {...this.props}
           apiSource = {this.props.apiSource.detail.data.connection_name}
+          apiSourceId = {this.props.apiSource.detail.data.id?.toString()}
           metterId = {window.location.pathname.split("/")[3]}
         />
       </>
