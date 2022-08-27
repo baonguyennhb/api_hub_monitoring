@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import background from "../../images/auth/background.svg";
+import background from "../../images/home/banner_background.jpg";
 import logo from "../../images/logo.png";
 import './style.scss'
 
@@ -17,7 +17,7 @@ class President extends Component {
                             </Link>
                         </div>
                         <div className="antd-pro-layouts-user-layout-desc">
-                            - Đăng nhập -
+                            --- LOGIN ---
                         </div>
                     </div>
                     <div className="antd-pro-pages-user-login-index-main">

@@ -6,10 +6,10 @@ import {
     VideoCameraOutlined,
     UserOutlined,
     LogoutOutlined,
-    PieChartOutlined
+    PieChartOutlined,
 } from '@ant-design/icons';
 import { AntAvatar } from "../AntAvatar";
-import { Layout, Menu, Space } from 'antd';
+import { Layout, Menu, Space, Avatar } from 'antd';
 import './style.css'
 const { Sider } = Layout;
 export default class President extends Component {
@@ -44,7 +44,7 @@ export default class President extends Component {
                 <Menu
                     className="menu-account"
                     mode="inline"
-                    // selectable={false}
+                // selectable={false}
                 //defaultOpenKeys={collapsed ? [] : ['account']}
                 >
                     <Menu.Divider />
@@ -58,12 +58,7 @@ export default class President extends Component {
                     >
                         <Menu.Item
                             key="account-user"
-                            icon={<AntAvatar
-                                alt={''}
-                                icon={<UserOutlined />}
-                                size="small"
-                                src={''}
-                            />}
+                            icon={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>}
                         >
                             {'Nguyễn Hữu Bảo'}
                         </Menu.Item>

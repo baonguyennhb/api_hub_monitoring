@@ -17,7 +17,7 @@ class President extends Component {
                     >
                         <Input
                             prefix={<UserOutlined className="site-form-item-icon"/>}
-                            placeholder="Tài khoản"
+                            placeholder="Email"
                         />
                     </AntFormItem>
                     <AntFormItem
@@ -27,7 +27,7 @@ class President extends Component {
                         <Input.Password
                             prefix={<LockOutlined className="site-form-item-icon"/>}
                             type="password"
-                            placeholder="Mật khẩu"
+                            placeholder="Password"
                         />
                     </AntFormItem>
                     <AntButton type="primary"
@@ -35,7 +35,7 @@ class President extends Component {
                                block={true}
                             //    loading={this.props.loading}
                     >
-                        Đăng nhập
+                        Login
                     </AntButton>
                 </Form>
             </div>
