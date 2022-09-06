@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
     ApiOutlined,
     DashboardOutlined,
-    VideoCameraOutlined,
+    CloudUploadOutlined,
     UserOutlined,
     LogoutOutlined,
     PieChartOutlined,
@@ -23,6 +23,9 @@ export default class President extends Component {
             case 'data-hub':
                 defaultSelectedKeys = ['data-hub']
                 break;
+            case 'push-manual':
+                defaultSelectedKeys = ['push-manual']
+                break
             default:
                 break;
         }
@@ -32,13 +35,17 @@ export default class President extends Component {
                     mode="inline"
                     defaultSelectedKeys={defaultSelectedKeys}
                 >
-                    <Menu.Item icon={<ApiOutlined />} key="api-source">
+                    <Menu.Item icon={<ApiOutlined />} key="api-source" className='side-item'>
                         API-SOURCE
                         <Link to="/api-source" />
                     </Menu.Item>
-                    <Menu.Item icon={<PieChartOutlined />} key="data-hub">
+                    <Menu.Item icon={<PieChartOutlined />} key="data-hub" className='side-item'>
                         DATA - HUB
                         <Link to="/data-hub" />
+                    </Menu.Item>
+                    <Menu.Item icon={<CloudUploadOutlined />} key="push-manual" className='side-item'>
+                        MANUALLY - PUSH
+                        <Link to="/push-manual" />
                     </Menu.Item>
                 </Menu>
                 <Menu
@@ -58,6 +65,7 @@ export default class President extends Component {
                     >
                         <Menu.Item
                             key="account-user"
+                            className='account-name'
                             icon={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>}
                         >
                             {'Nguyễn Hữu Bảo'}

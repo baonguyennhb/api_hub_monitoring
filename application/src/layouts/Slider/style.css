@@ -5,12 +5,17 @@
 
 .side-menu {
     background: white;
+    font-weight: 500;
+}
+.side-menu
+.side-item {
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .menu-account{
     width: 200px;
-    bottom: 12px;
-    left: 0;
+    padding: 0px 0px;
 }
 .menu-account 
 .sub-collapsed{
@@ -21,4 +26,8 @@
 .sub-collapsed
 .ant-menu-item-group-title{
     display: none;
+}
+.menu-account
+.account-logout {
+   
 }
