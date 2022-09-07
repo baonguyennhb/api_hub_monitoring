@@ -1,4 +1,35 @@
 .children-container {
     width: 100%;
     background: white;
+    min-height: 80vh;
+}
+
+.children-container .children-header {
+    border-bottom: 1px solid rgb(194, 194, 194);
+}
+
+.children-container .range-picker-container {
+    padding: 15px 20px;
+}
+
+.range-picker-container .picker-title {
+   
+}
+
+.range-picker-container .picker {
+    width: 400px;
+}
+.btn-push {
+    padding: 0px 7px;
+    float: right;
+    top: 15px;
+    right: 20px;
+}
+.children-container .table-metter-container {
+    padding: 10px 20px;
+}
+.table-metter-container .title-table-add-device {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }

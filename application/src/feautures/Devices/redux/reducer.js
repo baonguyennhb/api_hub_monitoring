@@ -21,6 +21,23 @@ export function reducer(state = initState, action) {
                     loading: true
                 }
             }
+        case CONSTANTS.FETCHING_LIST_ALL_DEVICE:
+            let datas = payload.data !== undefined ? payload.data : []
+            return {
+                ...state,
+                all: {
+                    data: datas.data,
+                    loading: false
+                }
+            }
+        case CONSTANTS.FETCHING_LIST_ALL_DEVICE_LOADING:
+            return {
+                ...state,
+                all: {
+                    ...state.list,
+                    loading: true
+                }
+            }
         case CONSTANTS.FETCHING_DETAIL_DEVICE:
             return {
                 ...state,

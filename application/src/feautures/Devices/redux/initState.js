@@ -3,6 +3,10 @@ const initState = {
         data: [],
         loading: false
     },
+    all: {
+        data: [],
+        loading: false
+    },
     detail: {
         data: {},
         loading: false

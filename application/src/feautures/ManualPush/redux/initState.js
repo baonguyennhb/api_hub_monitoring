@@ -1,23 +1,5 @@
 const initState = {
-    detail: {
-        data: {},
-        loading: false
-    },
-    tags: {
-        data: [],
-        loading: false
-    },
-    addTag: {
-        data: {},
-        loading: false
-    },
-    delete: {
-        error: {},
-        data: {},
-        loading: false,
-    },
-    download: {
-        error: {},
+    list: {
         data: {},
         loading: false
     },

@@ -23,6 +23,32 @@ export function fetchingLoadingAction() {
     }
 }
 
+// Feching All Device
+
+export function fetchingTableALlDevice( params) {
+    return dispatch => {
+        dispatch(fetchingAllDeviceLoadingAction())
+        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/device/all')
+            .then(res => {
+                dispatch(fetchingAllDeviceAction(res))
+            })
+    }
+}
+export function fetchingAllDeviceAction(response) {
+    return {
+        type: CONSTANTS.FETCHING_LIST_ALL_DEVICE,
+        payload: response
+    }
+}
+export function fetchingAllDeviceLoadingAction() {
+    return {
+        type: CONSTANTS.FETCHING_LIST_ALL_DEVICE_LOADING,
+        payload: {}
+    }
+}
+
+// Feching All Device
+
 export function fetchingDetailDevice(params) {
     return dispatch => {
         axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/device/detail", params = {params})

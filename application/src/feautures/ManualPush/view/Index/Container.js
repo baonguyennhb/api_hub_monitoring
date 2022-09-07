@@ -1,38 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig } from '../../redux'
+import { fetchingTableALlDevice } from '../../../Devices/redux'
 import President from './President'
 
 class Container extends Component {
- 
     render() {
     return (
       <President {...this.props}
       />
     )
   }
+  componentDidMount() {
+    this.props.fetchingTableALlDevice()
+  }
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    fetchingDetailDataHub: () => {
-      dispatch(fetchingDetailDataHub())
-    },
-    fetchingTableTagMqtt: () => {
-      dispatch(fetchingTableTagMqtt())
-    },
-    removeTag: (id) => {
-      dispatch(removeTag(id))
-    },
-    downloadConfig: (params) => {
-      dispatch(downloadConfig(params))
-    }
+   fetchingTableALlDevice:() => {
+    dispatch(fetchingTableALlDevice())
+   }
   }
 }
 
 export function mapStateToProps(state) {
   return {
-    data_hub: state.data_hub
+    devices: state.device
   }
 }
 

@@ -1,61 +1,10 @@
-import * as CONSTANTS  from './constants'
 import axios from 'axios'
-import { pushMessageError, pushMessageSuccess, pushMessageLoading } from "../../../layouts/Notification"
-
-export function fetchingDetailDataHub(){
+import * as CONSTANTS from './constants'
+import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notification"
+export function fetchingTableDevice( params) {
     return dispatch => {
-        dispatch(fetchingDetailLoadingAction())
-        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/detail")
-            .then(res => {
-                dispatch(fetchingDetailAction(res))
-            })
-    }
-}
-export function fetchingDetailAction(response) {
-    return {
-        type: CONSTANTS.FETCHING_DETAIL_DATAHUB,
-        payload: response
-    }
-}
-export function fetchingDetailLoadingAction() {
-    return {
-        type: CONSTANTS.FETCHING_DETAIL_DATAHUB_LOADING,
-        payload: {}
-    }
-}
-
-// Update Data Hub
-
-export function updateDataHub (params) {
-    return dispatch => {
-        dispatch(updateActionLoading())
-        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/edit", params, { params : {id: params.id}})
-            .then(res => dispatch(updateAction(res)))
-    }
-}
-
-export function updateAction(res) {
-    if (res.data.code === 200) {
-        pushMessageSuccess("Update DataHub Sucessfully!")
-    }
-    return {
-        type: CONSTANTS.UPDATE_DATAHUB,
-        payload: res
-    }
-}
-
-export function updateActionLoading() {
-    return {
-        type: CONSTANTS.UPDATE_DATAHUB_LOADING,
-        payload: {}
-    }
-}
-
-// Feching All Tag 
-export function fetchingTableTagMqtt() {
-    return dispatch => {
-        dispatch(fetchingLoadingAction())
-        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/data-hub/list/tag')
+        dispatch(fetchingLoadingAction)
+        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/device/list', params = {params})
             .then(res => {
                 dispatch(fetchingAction(res))
             })
@@ -63,99 +12,110 @@ export function fetchingTableTagMqtt() {
 }
 export function fetchingAction(response) {
     return {
-        type: CONSTANTS.FETCHING_LIST_TAG_DATAHUB,
+        type: CONSTANTS.FETCHING_LIST_DEVICE,
         payload: response
     }
 }
 export function fetchingLoadingAction() {
     return {
-        type: CONSTANTS.FETCHING_LIST_TAG_DATAHUB_LOADING,
+        type: CONSTANTS.FETCHING_LIST_DEVICE_LOADING,
         payload: {}
     }
 }
-// Feching All Tag 
 
-//Add Tag To Mqtt Table
-export function addTag (params) {
+export function fetchingDetailDevice(params) {
     return dispatch => {
-        dispatch(addTagActionLoading())
-        axios.post(process.env.REACT_APP_BASE_URL + '/api/v1/data-hub/add/tag', params)
-            .then(res => dispatch(addTagAction(res)))
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/device/detail", params = {params})
+            .then(res => dispatch(fetchingDetailAction(res)))
     }
 }
 
-export function addTagActionLoading() {
+export function fetchingDetailAction(response) {
     return {
-        type: CONSTANTS.ADD_TAG_LOADING,
-        payload: {}
+        type: CONSTANTS.FETCHING_DETAIL_DEVICE,
+        payload: response
+    }
+} 
+
+
+export function createDevice(params) {
+    return dispatch => {
+        dispatch(createActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/device/add", params)
+            .then(res => {
+                dispatch(createAction(res))
+            })
     }
 }
 
-export function addTagAction(response) {
+export function createAction(response) {
     if (response.data.code === 200) {
-        pushMessageSuccess(response.data.data)
-    } else {
-        pushMessageError(response.data.error)
+        pushMessageSuccess("Add Device Sucessfully!");
+    }
+    if (response.data.code === 400) {
+        pushMessageError(response.data.message);
     }
     return {
-        type: CONSTANTS.ADD_TAG,
+        type: CONSTANTS.CREATE_DEVICE,
         payload: response
     }
 }
 
-// Remove Tag
-
-export function removeTag(params) {
-    return dispatch => {
-        dispatch(deleteActionLoading())
-        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove/tag", params = {params})
-            .then(res => dispatch(deleteAction(res)))
+export function createActionLoading() {
+    return {
+        type: CONSTANTS.CREATE_DEVICE_LOADING,
+        payload: {}
     }
 }
 
-export function deleteAction(response) {
-    if (response.data.code === 200) {
-        pushMessageSuccess("Remove Tag successfully!")
+
+// Update Tag 
+
+export function updateDevice (params) {
+    return dispatch => {
+        dispatch(updateActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/device/edit", params, { params : {id: params.id}})
+            .then(res => dispatch(updateAction(res)))
+    }
+}
+
+export function updateAction(res) {
+    if (res.data.code === 200) {
+        pushMessageSuccess("Update Device Sucessfully!")
     }
     return {
-        type: CONSTANTS.REMOVE_TAG,
+        type: CONSTANTS.UPDATE_DEVICE,
+        payload: res
+    }
+}
+
+export function updateActionLoading() {
+    return {
+        type: CONSTANTS.UPDATE_DEVICE_LOADING,
+        payload: {}
+    }
+}
+
+export function deleteDevice(params) {
+    return dispatch => {
+        dispatch(deleteActionLoading())
+        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/device/delete", params = {params})
+            .then(res => dispatch(deleteAction(res)))
+    }
+} 
+
+export function deleteAction(response) {
+    if (response.data.code ===200) {
+        pushMessageSuccess("Delete Successfully!")
+    }
+    return {
+        type: CONSTANTS.DELETE_DEVICE,
         payload: response
     }
 }
 export function deleteActionLoading() {
     return {
-        type:CONSTANTS.REMOVE_TAG_LOADING,
+        type: CONSTANTS.DELETE_DEVICE_LOADING,
         payload: {}
     }
 }
-
-// Download Config
-
-export function downloadConfig(params) {
-    return dispatch => {
-        dispatch(downloadActionLoading())
-        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/upload-config", params)
-            .then(res => dispatch(downloadAction(res)))
-    }
-}
-
-export function downloadAction(response) {
-    if (response.data.code === 200) {
-        pushMessageSuccess("Upload Config successfully!")
-    } else if (response.data.code === 400) {
-        pushMessageError("Upload Config Failed Because API-HUB not connect DATA-HUB!")
-    }
-    return {
-        type: CONSTANTS.DOWNLOAD_CONFIG,
-        payload: response
-    }
-}
-export function downloadActionLoading() {
-    return {
-        type:CONSTANTS.DOWNLOAD_CONFIG_LOADING,
-        payload: {}
-    }
-}
-
-
-
