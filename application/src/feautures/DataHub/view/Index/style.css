@@ -1,51 +1,78 @@
-.btn-download {
+.group-btn {
     float: right;
     right: 10px;
 }
+
+.group-btn .btn-connect {
+    border-color: green;
+    color: green;
+    padding: 0px 8px;
+}
+
+.group-btn .btn-disconnect {
+    padding: 0px 8px;
+}
+
+.group-btn .btn-uplaod-config {
+    padding: 0px 8px;
+}
+
 .children-container {
     width: 100%;
 }
-.children-container
-.form-config-mqtt {
+
+.children-container .form-config-mqtt {
     background: white;
     padding: 20px 30px;
 }
-.children-container
-.form-config-mqtt
-.header-config-mqtt {
+
+.children-container .form-config-mqtt .header-config-mqtt {
     font-size: 14;
     font-weight: 600;
 }
-.form-config-mqtt
-.form {
+
+.form-config-mqtt .form {
     margin-top: 10px;
 }
-.form
-.ant-form-item  {
+
+.form .ant-form-item {
     margin-bottom: 8px;
 }
 
-.children-container
-.table-tag-mqtt {
+.children-container .table-tag-mqtt {
     background: white;
     padding: 20px 10px;
 }
-.table-tag-mqtt
-.header-table-tag_mqtt {
-    
-}
-.table-tag-mqtt
-.table-list-tag {
+
+.table-tag-mqtt .header-table-tag_mqtt {}
+
+.table-tag-mqtt .table-list-tag {
     margin-top: 15px;
     overflow: auto;
 }
-.header-table-tag_mqtt
-.header-title {
+
+.table-list-tag
+
+/* table */
+.ant-table {
+    font-size: 13px;
+}
+
+/* row data */
+.ant-table-tbody>tr>td {
+    padding: 8px;
+}
+
+.ant-table-thead>tr>th {
+    padding: 10px;
+}
+
+.header-table-tag_mqtt .header-title {
     font-size: 14;
     font-weight: 600;
 }
-.header-table-tag_mqtt
-.btn-add-tag-container {
+
+.header-table-tag_mqtt .btn-add-tag-container {
     float: right;
     margin-top: -10px;
 }

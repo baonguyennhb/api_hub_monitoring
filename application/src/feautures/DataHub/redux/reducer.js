@@ -95,6 +95,50 @@ export function reducer(state = initState, action) {
                     loading: true
                 },
             }
+        case CONSTANTS.CONNECT_DATA_HUB:
+            return {
+                ...state,
+                connect: {
+                    ...state.connect,
+                    data: payload.message,
+                    loading: false
+                }
+            }
+        case CONSTANTS.CONNECT_DATA_HUB_LOADING:
+            return {
+                ...state,
+                connect: {
+                    ...state.connect,
+                    data: {},
+                    loading: true
+                }
+            }
+        case CONSTANTS.DISCONNECT_DATA_HUB:
+            return {
+                ...state,
+                disconnect: {
+                    ...state.disconnect,
+                    data: payload.message,
+                    loading: false
+                }
+            }
+        case CONSTANTS.DISCONNECT_DATA_HUB_LOADING:
+            return {
+                ...state,
+                disconnect: {
+                    ...state.disconnect,
+                    data: {},
+                    loading: true
+                }
+            }
+        case CONSTANTS.FECHING_CONNECT_DATA_HUB:
+            return {
+                ...state,
+                status: {
+                    ...state.status,
+                    data: payload.data,
+                }
+            }
         default:
             return state
     }

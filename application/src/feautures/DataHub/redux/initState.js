@@ -21,6 +21,18 @@ const initState = {
         data: {},
         loading: false
     },
+    connect: {
+        data: {},
+        loading: false
+    },
+    disconnect: {
+        data: {},
+        loading: false
+    },
+    status: {
+        data: {},
+        loading: false
+    },
     reload: false
 }
 

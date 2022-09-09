@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig } from '../../redux'
+import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig, connectDataHub, disconnectDataHub, getStatusConnectDataHub } from '../../redux'
 import President from './President'
 
 class Container extends Component {
@@ -17,13 +17,20 @@ class Container extends Component {
         this.setState({
           loading: false
         })
-        this.formRef.current.submit()
-      }, 3000)
+        this.props.downloadConfig()
+      }, 2000)
     })
+  }
+  handleConnectDataHub = () => {
+    console.log("Connect Action")
+    this.formRef.current.submit()
+  }
+  handleDisConnectDataHub = () => {
+    this.props.disconnectDataHub()
   }
   onFinish = (value) => {
     console.log("SubmitForm")
-    this.props.downloadConfig(value)
+    this.props.connectDataHub(value)
   }
   handleRemoveTag = (data) => {
     this.props.removeTag({id: data.id})
@@ -31,6 +38,7 @@ class Container extends Component {
   componentDidMount() {
     this.props.fetchingDetailDataHub()
     this.props.fetchingTableTagMqtt()
+    this.props.getStatusConnectDataHub()
   }
   componentDidUpdate(prevProps) {
     if (prevProps.data_hub.detail.loading !== this.props.data_hub.detail.loading && !this.props.data_hub.detail.loading) {
@@ -41,15 +49,28 @@ class Container extends Component {
     if (prevProps.data_hub.reload !== this.props.data_hub.reload && this.props.data_hub.reload == true) {
       this.props.fetchingTableTagMqtt()
     }
+    if (prevProps.data_hub.connect.loading !== this.props.data_hub.connect.loading) {
+      this.props.getStatusConnectDataHub()
+      console.log("test")
+    }
+    if (prevProps.data_hub.disconnect.loading !== this.props.data_hub.disconnect.loading) {
+      this.props.getStatusConnectDataHub()
+      console.log("test")
+    }
   }
   render() {
     return (
       <President {...this.props}
         loading={this.state.loading}
+        loadingConnect = {this.props.data_hub.connect.loading}
+        loadingDisConnect = {this.props.data_hub.disconnect.loading}
         handleDownloadConfigMqtt={this.handleDownloadConfigMqtt}
         formRef={this.formRef}
         handleRemoveTag = {this.handleRemoveTag}
         onFinish = {this.onFinish}
+        handleConnectDataHub = {this.handleConnectDataHub}
+        handleDisConnectDataHub = {this.handleDisConnectDataHub}
+        statusDataHub = {this.props.data_hub.status.data?.data}
       />
     )
   }
@@ -68,6 +89,15 @@ export function mapDispatchToProps(dispatch) {
     },
     downloadConfig: (params) => {
       dispatch(downloadConfig(params))
+    },
+    connectDataHub: (params) => {
+      dispatch(connectDataHub(params))
+    },
+    disconnectDataHub: () => {
+      dispatch(disconnectDataHub())
+    },
+    getStatusConnectDataHub: () => {
+      dispatch(getStatusConnectDataHub())
     }
   }
 }

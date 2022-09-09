@@ -1,7 +1,7 @@
-import { Button, Col, Row, Space, Table, Tooltip, Modal, Tabs } from 'antd'
+import { Button, Col, Row, Space, Table, Tooltip, Modal, Tabs, Tag } from 'antd'
 import React, { Component } from 'react'
 import FormMqtt from '../../component/FormMqtt'
-import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined } from '@ant-design/icons';
+import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined, DisconnectOutlined, ControlOutlined, SyncOutlined } from '@ant-design/icons';
 import './style.css'
 import { AddTag } from '../AddTag';
 const { TabPane } = Tabs;
@@ -88,7 +88,21 @@ export default class President extends Component {
                         <div className='title-page'>DATA - HUB CONFIGURATION</div>
                     </Col>
                     <Col span={12}>
-                        <Button type='primary' className='btn-download' loading={this.props.loading} onClick={this.props.handleDownloadConfigMqtt}> <DownloadOutlined /> Download</Button>
+                        <div className='group-btn'>
+                            <Space size={"small"}>
+                                <label>Status:</label>
+                                {
+                                    (this.props.statusDataHub) ? (
+                                        <Tag className='tag' color="green" icon = { <SyncOutlined spin /> }>CONNECTED</Tag>
+                                    ) : (
+                                        <Tag className='tag' color="gray">DISCONNECT</Tag>
+                                    )
+                                }
+                                <Button onClick={this.props.handleDisConnectDataHub} loading={this.props.loadingDisConnect} className = "btn-disconnect" danger><DisconnectOutlined />DisConnect</Button>
+                                <Button onClick={this.props.handleConnectDataHub} loading={this.props.loadingConnect} className = "btn-connect"><ControlOutlined />Connect</Button>
+                                <Button type='primary' loading={this.props.loading} onClick={this.props.handleDownloadConfigMqtt} className = "btn-uplaod-config"> <DownloadOutlined />Download Config</Button>
+                            </Space>
+                        </div>
                     </Col>
                 </Row>
                 <div className='children-container'>

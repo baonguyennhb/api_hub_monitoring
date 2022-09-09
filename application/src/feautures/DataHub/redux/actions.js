@@ -157,5 +157,73 @@ export function downloadActionLoading() {
     }
 }
 
+export function connectDataHub (params) {
+    return dispatch => {
+        dispatch(connectDataHubActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/connect", params)
+        .then(res => dispatch(connectDataHubAction(res)))
+    }
+}
+
+export function connectDataHubAction(res) {
+    console.log(res)
+    if (res.data.code == 200) {
+        pushMessageSuccess(res.data.message)
+    } else {
+        pushMessageError(res.data.error)
+    }
+    return {
+        type: CONSTANTS.CONNECT_DATA_HUB,
+        payload: res
+    }
+}
+export function connectDataHubActionLoading() {
+    return {
+        type: CONSTANTS.CONNECT_DATA_HUB_LOADING,
+        payload: {}
+    }
+}
+
+export function disconnectDataHub () {
+    return dispatch => {
+        dispatch(disconnectDataHubActionLoading())
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/disconnect")
+        .then(res => dispatch(disconnectDataHubAction(res)))
+    }
+}
+
+export function disconnectDataHubAction(res) {
+    if (res.data.code == 200) {
+        pushMessageSuccess(res.data.message)
+    } else {
+        pushMessageError(res.data.error)
+    }
+    return {
+        type: CONSTANTS.DISCONNECT_DATA_HUB,
+        payload: res
+    }
+}
+export function disconnectDataHubActionLoading() {
+    //console.log("disconect")
+    return {
+        type: CONSTANTS.DISCONNECT_DATA_HUB_LOADING,
+        payload: {}
+    }
+}
+
+export function getStatusConnectDataHub () {
+    return dispatch => {
+        axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/connect")
+        .then(res => dispatch(getStatusConnectDataHubAction(res)))
+    }
+}
+
+export function getStatusConnectDataHubAction(res) {
+    return {
+        type: CONSTANTS.FECHING_CONNECT_DATA_HUB,
+        payload: res
+    }
+}
+
 
 
