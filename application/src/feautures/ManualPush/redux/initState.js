@@ -1,9 +1,8 @@
 const initState = {
-    list: {
+    push_manual: {
         data: {},
         loading: false
     },
-    reload: false
 }
 
 export default initState

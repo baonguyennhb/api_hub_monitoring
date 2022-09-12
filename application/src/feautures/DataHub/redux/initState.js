@@ -33,6 +33,10 @@ const initState = {
         data: {},
         loading: false
     },
+    deleteConfig: {
+        data: {},
+        loading: false
+    },
     reload: false
 }
 

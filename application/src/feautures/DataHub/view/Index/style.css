@@ -16,6 +16,9 @@
 .group-btn .btn-uplaod-config {
     padding: 0px 8px;
 }
+.group-btn .btn-delete-config {
+    padding: 0px 5px;
+}
 
 .children-container {
     width: 100%;

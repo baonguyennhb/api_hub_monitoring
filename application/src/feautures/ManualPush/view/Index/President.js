@@ -59,7 +59,10 @@ export default class President extends Component {
             content: 'Do you want to push data to DataHub',
             okText: 'Push',
             cancelText: 'Cancel',
-            onOk: () => { }
+            onOk: () => { this.props.handlePushDoDataHub({
+                metter: this.state.selectedRowKeys,
+                rangeTime: this.state.dates
+            }) }
         });
     };
 

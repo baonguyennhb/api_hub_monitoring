@@ -75,6 +75,26 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
+        case CONSTANTS.DELETE_TAG_CONFIG:
+            return {
+                ...state,
+                deleteConfig: {
+                    ...state.deleteConfig,
+                    error: payload.error,
+                    data: payload.data
+                },
+                reload: true
+            }
+        case CONSTANTS.DELETE_TAG_CONFIG_LOADING:
+            return {
+                ...state,
+                deleteConfig: {
+                    ...state.deleteConfig,
+                    error: {},
+                    data: {}
+                },
+                reload: false
+            }
         case CONSTANTS.DOWNLOAD_CONFIG:
             return {
                 ...state,

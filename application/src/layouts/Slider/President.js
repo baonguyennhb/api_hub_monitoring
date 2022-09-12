@@ -51,7 +51,7 @@ export default class President extends Component {
                 <Menu
                     className="menu-account"
                     mode="inline"
-                // selectable={false}
+                    selectable={false}
                 //defaultOpenKeys={collapsed ? [] : ['account']}
                 >
                     <Menu.Divider />

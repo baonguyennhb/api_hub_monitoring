@@ -157,6 +157,34 @@ export function downloadActionLoading() {
     }
 }
 
+// Remove Tag Config
+
+export function deleteTagConfig(params) {
+    return dispatch => {
+        dispatch(deleteConfigActionLoading())
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove-config/tag", params )
+            .then(res => dispatch(deleteConfigAction(res)))
+    }
+}
+
+export function deleteConfigAction(response) {
+    if (response.data.code === 200) {
+        pushMessageSuccess(response.data.message)
+    } else {
+        pushMessageError(response.data.error)
+    }
+    return {
+        type: CONSTANTS.DELETE_TAG_CONFIG,
+        payload: response
+    }
+}
+export function deleteConfigActionLoading() {
+    return {
+        type:CONSTANTS.DELETE_TAG_CONFIG_LOADING,
+        payload: {}
+    }
+}
+
 export function connectDataHub (params) {
     return dispatch => {
         dispatch(connectDataHubActionLoading())

@@ -4,6 +4,7 @@ import FormMqtt from '../../component/FormMqtt'
 import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined, DisconnectOutlined, ControlOutlined, SyncOutlined } from '@ant-design/icons';
 import './style.css'
 import { AddTag } from '../AddTag';
+import { DeleteConfig } from '../DeleteTag';
 const { TabPane } = Tabs;
 export default class President extends Component {
     confirm = (data) => {
@@ -93,14 +94,15 @@ export default class President extends Component {
                                 <label>Status:</label>
                                 {
                                     (this.props.statusDataHub) ? (
-                                        <Tag className='tag' color="green" icon = { <SyncOutlined spin /> }>CONNECTED</Tag>
+                                        <Tag className='tag' color="green" icon={<SyncOutlined spin />}>CONNECTED</Tag>
                                     ) : (
                                         <Tag className='tag' color="gray">DISCONNECT</Tag>
                                     )
                                 }
-                                <Button onClick={this.props.handleDisConnectDataHub} loading={this.props.loadingDisConnect} className = "btn-disconnect" danger><DisconnectOutlined />DisConnect</Button>
-                                <Button onClick={this.props.handleConnectDataHub} loading={this.props.loadingConnect} className = "btn-connect"><ControlOutlined />Connect</Button>
-                                <Button type='primary' loading={this.props.loading} onClick={this.props.handleDownloadConfigMqtt} className = "btn-uplaod-config"> <DownloadOutlined />Download Config</Button>
+                                <Button onClick={this.props.handleDisConnectDataHub} loading={this.props.loadingDisConnect} className="btn-disconnect" danger><DisconnectOutlined />DisConnect</Button>
+                                <Button onClick={this.props.handleConnectDataHub} loading={this.props.loadingConnect} className="btn-connect"><ControlOutlined />Connect</Button>
+                                <Button type='primary' loading={this.props.loading} onClick={this.props.handleDownloadConfigMqtt} className="btn-uplaod-config"> <DownloadOutlined />Download Config</Button>
+                                <DeleteConfig />
                             </Space>
                         </div>
                     </Col>
