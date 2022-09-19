@@ -9,16 +9,23 @@
 }
 
 .children-container .range-picker-container {
-    padding: 15px 20px;
+    padding: 10px 20px;
 }
 
 .range-picker-container .picker-title {
-   
+   font-size: 14px;
+   font-weight: 600;
 }
 
 .range-picker-container .picker {
-    width: 400px;
+    width: 380px;
 }
+
+.children-container .api-source-container {
+    padding: 5px 20px;
+    font-weight: 600;
+}
+
 .btn-push {
     padding: 0px 7px;
     float: right;

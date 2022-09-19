@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingTableALlDevice } from '../../../Devices/redux'
+import { fetchingTableDevice } from '../../../Devices/redux'
+import { fetchingTableApiSource } from '../../../ApiSource/redux'
 import { pushToDataHub } from '../../redux'
 import President from './President'
 
 class Container extends Component {
-    render() {
+  render() {
     return (
       <President {...this.props}
-      handlePushDoDataHub = {this.handlePushDoDataHub}
+        handlePushDoDataHub={this.handlePushDoDataHub}
       />
     )
   }
@@ -16,24 +17,28 @@ class Container extends Component {
     this.props.pushToDataHub(value)
   }
   componentDidMount() {
-    this.props.fetchingTableALlDevice()
+    this.props.fetchingTableApiSource()
   }
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-   fetchingTableALlDevice:() => {
-    dispatch(fetchingTableALlDevice())
-   },
-   pushToDataHub: (params) => {
-    dispatch(pushToDataHub(params))
-   }
+    fetchingTableApiSource: () => {
+      dispatch(fetchingTableApiSource())
+    },
+    fetchingTableDevice: (params) => {
+      dispatch(fetchingTableDevice(params))
+    },
+    pushToDataHub: (params) => {
+      dispatch(pushToDataHub(params))
+    }
   }
 }
 
 export function mapStateToProps(state) {
   return {
-    devices: state.device
+    devices: state.device,
+    apiSources : state.apiSource
   }
 }
 

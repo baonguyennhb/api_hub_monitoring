@@ -4,13 +4,14 @@ import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notificat
 export function pushToDataHub( params) {
     return dispatch => {
         dispatch(pushActionLoading())
-        axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/push-manual', params)
+        axios.post(process.env.REACT_APP_BASE_URL + '/api/v1/push-manual', params)
             .then(res => {
                 dispatch(pushAction(res))
             })
     }
 }
 export function pushAction(response) {
+    console.log(response.data)
     if (response.data.code === 200) {
         pushMessageSuccess(response.data?.message)
     } else {

@@ -1,11 +1,13 @@
-import { Button, Col, Row, Space, Table, Modal, DatePicker, Typography } from 'antd'
+import { Button, Col, Row, Space, Table, Modal, DatePicker, Typography, Select } from 'antd'
 import React, { Component } from 'react'
-import { OrderedListOutlined, CloudUploadOutlined, ExclamationCircleOutlined, FieldTimeOutlined } from '@ant-design/icons';
+import { OrderedListOutlined, CloudUploadOutlined, ExclamationCircleOutlined, FieldTimeOutlined, ApiOutlined } from '@ant-design/icons';
 import './style.css'
 const { RangePicker } = DatePicker;
 const { Text } = Typography;
+const { Option } = Select;
 export default class President extends Component {
     state = {
+        apiSource: '',
         dates: null,
         hackValue: null,
         value: null,
@@ -21,6 +23,13 @@ export default class President extends Component {
         return !!tooEarly || !!tooLate;
     };
 
+    handleChange = (value) => {
+        this.props.fetchingTableDevice({ apiSource: value })
+        this.setState({
+            ...this.state,
+            apiSource: value
+        })
+    };
 
     onOpenChange = (open) => {
         if (open) {
@@ -59,15 +68,18 @@ export default class President extends Component {
             content: 'Do you want to push data to DataHub',
             okText: 'Push',
             cancelText: 'Cancel',
-            onOk: () => { this.props.handlePushDoDataHub({
-                metter: this.state.selectedRowKeys,
-                rangeTime: this.state.dates
-            }) }
+            onOk: () => {
+                this.props.handlePushDoDataHub({
+                    apiSource: this.state.apiSource,
+                    metter: this.state.selectedRowKeys,
+                    rangeTime: this.state.dates
+                })
+            }
         });
     };
 
     render() {
-
+        let apiSources = this.props.apiSources.list?.data
         const columns = [
             {
                 title: 'No.',
@@ -89,7 +101,7 @@ export default class President extends Component {
             onChange: this.onSelectedRowKeysChange,
         };
 
-        const allDevice = this.props.devices.all.data
+        const allDevice = this.props.devices.list.data
         const dataSource = allDevice.map((device, index) => {
             return {
                 key: device.metter_id,
@@ -108,21 +120,39 @@ export default class President extends Component {
                             <div className='range-picker-container'>
                                 <Space size={"small"}>
                                     <FieldTimeOutlined />
-                                    <Text className='picker-title'>SELECT TIME:</Text>
+                                    <span className='picker-title'>SELECT TIME:</span>
                                     <RangePicker
                                         value={this.state.hackValue || this.state.value}
                                         disabledDate={this.disabledDate}
                                         onCalendarChange={(val) => this.setState({
-                                            ...this.state,
                                             dates: val
                                         })}
                                         onChange={(val) => this.setState({
-                                            ...this.state,
                                             value: val
                                         })}
                                         onOpenChange={this.onOpenChange}
                                         className="picker"
+                                        // showTime
                                     />
+                                </Space>
+                            </div>
+                            <div className='api-source-container'>
+                                <Space size={'small'}>
+                                    <ApiOutlined />
+                                    <span className='title-api-source'>API SOURCE </span>
+                                    <Select
+                                        // defaultValue="lucy"
+                                        style={{
+                                            width: 386,
+                                        }}
+                                        onChange={this.handleChange}
+                                    >
+                                        {
+                                            apiSources.map(data => (
+                                                <Option key={data.id} value={data.id}>{data.connection_name}</Option>
+                                            ))
+                                        }
+                                    </Select>
                                 </Space>
                             </div>
                         </Col>
@@ -147,6 +177,7 @@ export default class President extends Component {
                                 },
                             })}
                             bordered
+                            pagination={{ defaultPageSize: 15, showSizeChanger: true, pageSizeOptions: ['15', '20', '30'] }}
                         />
                     </div>
                 </div>
