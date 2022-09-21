@@ -36,16 +36,16 @@ class Container extends Component {
     )
   }
   componentDidMount() {
-    const metterId = { metterId: window.location.pathname.split("/")[3] }
-    this.props.fetchingTableTag(metterId)
+    const params = { metterId: window.location.pathname.split("/")[3] }
+    this.props.fetchingTableTag(params)
     const api_source_id = { apiSourceId: window.location.pathname.split("/")[2] }
     this.props.fetchingDetailApiSource(api_source_id)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.tags.reload !== this.props.tags.reload && this.props.tags.reload) {
       console.log("Feching")
-      const metterId = { metterId: window.location.pathname.split("/")[3] }
-      this.props.fetchingTableTag(metterId)
+      const params = { metterId: window.location.pathname.split("/")[3] }
+      this.props.fetchingTableTag(params)
     }
   }
   handleDelete = (data) => {
@@ -105,8 +105,8 @@ class Container extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchingTableTag: (metterId) => {
-      dispatch(fetchingTableTag(metterId))
+    fetchingTableTag: (params) => {
+      dispatch(fetchingTableTag(params))
     },
     deleteTag: (id) => {
       dispatch(deleteTag(id))
