@@ -7,7 +7,7 @@ export function reducer(state = initState, action) {
         case CONSTANTS.PUSH_MANUAL:
             return {
                 ...state,
-                push: {
+                push_manual: {
                     data: payload.data.data,
                     loading: false
                 }
@@ -15,8 +15,8 @@ export function reducer(state = initState, action) {
         case CONSTANTS.PUSH_MANUAL_LOADING:
             return {
                 ...state,
-                push: {
-                    ...state.push,
+                push_manual: {
+                    ...state.push_manual,
                     loading: true
                 }
             }

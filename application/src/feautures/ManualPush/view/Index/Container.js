@@ -38,7 +38,8 @@ export function mapDispatchToProps(dispatch) {
 export function mapStateToProps(state) {
   return {
     devices: state.device,
-    apiSources : state.apiSource
+    apiSources : state.apiSource,
+    push_manual: state.push_manual
   }
 }
 

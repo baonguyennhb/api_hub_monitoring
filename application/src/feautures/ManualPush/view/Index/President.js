@@ -157,7 +157,7 @@ export default class President extends Component {
                             </div>
                         </Col>
                         <Col span={12}>
-                            <Button type='primary' className='btn-push' onClick={() => this.confirm()}><CloudUploadOutlined /> PUSH TO DATA-HUB</Button>
+                            <Button type='primary' className='btn-push' onClick={() => this.confirm()} loading = {this.props.push_manual.push_manual.loading}><CloudUploadOutlined /> PUSH TO DATA-HUB</Button>
                         </Col>
                     </Row>
                     <div className='table-metter-container'>

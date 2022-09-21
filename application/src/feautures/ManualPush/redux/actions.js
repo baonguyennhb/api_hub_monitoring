@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as CONSTANTS from './constants'
-import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notification"
+import { pushMessageSuccess, pushMessageError, pushNotification } from "../../../layouts/Notification"
 export function pushToDataHub( params) {
     return dispatch => {
         dispatch(pushActionLoading())
@@ -13,7 +13,7 @@ export function pushToDataHub( params) {
 export function pushAction(response) {
     console.log(response.data)
     if (response.data.code === 200) {
-        pushMessageSuccess(response.data?.message)
+        pushNotification("success", response.data?.message)
     } else {
         pushMessageError(response.data?.error)
     }
