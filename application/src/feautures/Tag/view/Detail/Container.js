@@ -36,15 +36,15 @@ class Container extends Component {
     )
   }
   componentDidMount() {
-    const params = { metterId: window.location.pathname.split("/")[3] }
-    this.props.fetchingTableTag(params)
     const api_source_id = { apiSourceId: window.location.pathname.split("/")[2] }
+    const params = { metterId: window.location.pathname.split("/")[3], apiSourceId:  window.location.pathname.split("/")[2]}
+    this.props.fetchingTableTag(params)
     this.props.fetchingDetailApiSource(api_source_id)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.tags.reload !== this.props.tags.reload && this.props.tags.reload) {
       console.log("Feching")
-      const params = { metterId: window.location.pathname.split("/")[3] }
+      const params = { metterId: window.location.pathname.split("/")[3], apiSourceId:  window.location.pathname.split("/")[2]}
       this.props.fetchingTableTag(params)
     }
   }

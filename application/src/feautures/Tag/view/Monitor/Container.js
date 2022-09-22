@@ -18,9 +18,9 @@ class Container extends Component {
     )
   }
   componentDidMount() {
-    const metterId = { metterId: window.location.pathname.split("/")[3] }
-    this.props.fetchingTableTag(metterId)
-    this.props.fetchingMonitorTag(metterId)
+    const params = { metterId: window.location.pathname.split("/")[3], apiSourceId:  window.location.pathname.split("/")[2]}
+    this.props.fetchingTableTag(params)
+    this.props.fetchingMonitorTag(params)
     const api_source_id = { apiSourceId: window.location.pathname.split("/")[2] }
     this.props.fetchingDetailApiSource(api_source_id)
   }
@@ -28,8 +28,8 @@ class Container extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchingTableTag: (metterId) => {
-      dispatch(fetchingTableTag(metterId))
+    fetchingTableTag: (params) => {
+      dispatch(fetchingTableTag(params))
     },
     deleteTag: (id) => {
       dispatch(deleteTag(id))
@@ -37,8 +37,8 @@ function mapDispatchToProps(dispatch) {
     fetchingDetailApiSource: (id) => {
       dispatch(fetchingDetailApiSource(id))
     },
-    fetchingMonitorTag: (metterId) => {
-      dispatch(fetchingMonitorTag(metterId))
+    fetchingMonitorTag: (params) => {
+      dispatch(fetchingMonitorTag(params))
     }
   }
 }
