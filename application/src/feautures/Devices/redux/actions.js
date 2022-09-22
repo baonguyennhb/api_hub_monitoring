@@ -3,7 +3,7 @@ import * as CONSTANTS from './constants'
 import { pushMessageSuccess, pushMessageError } from "../../../layouts/Notification"
 export function fetchingTableDevice( params) {
     return dispatch => {
-        dispatch(fetchingLoadingAction)
+        dispatch(fetchingLoadingAction())
         axios.get(process.env.REACT_APP_BASE_URL + '/api/v1/device/list', params = {params})
             .then(res => {
                 dispatch(fetchingAction(res))
@@ -142,6 +142,14 @@ export function deleteAction(response) {
 export function deleteActionLoading() {
     return {
         type: CONSTANTS.DELETE_DEVICE_LOADING,
+        payload: {}
+    }
+}
+
+// Reset State
+export function clearTableDevice( ) {
+    return {
+        type: CONSTANTS.RESET_TABLE_DEVICE,
         payload: {}
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingTableDevice } from '../../../Devices/redux'
+import { fetchingTableDevice, clearTableDevice } from '../../../Devices/redux'
 import { fetchingTableApiSource } from '../../../ApiSource/redux'
 import { pushToDataHub } from '../../redux'
 import President from './President'
@@ -19,6 +19,9 @@ class Container extends Component {
   componentDidMount() {
     this.props.fetchingTableApiSource()
   }
+  componentWillUnmount() {
+    this.props.clearTableDevice()
+  }
 }
 
 export function mapDispatchToProps(dispatch) {
@@ -31,6 +34,9 @@ export function mapDispatchToProps(dispatch) {
     },
     pushToDataHub: (params) => {
       dispatch(pushToDataHub(params))
+    },
+    clearTableDevice: () => {
+      dispatch(clearTableDevice())
     }
   }
 }

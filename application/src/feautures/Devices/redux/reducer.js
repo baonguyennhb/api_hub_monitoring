@@ -114,6 +114,13 @@ export function reducer(state = initState, action) {
                 },
                 reload: false
             }
+        case CONSTANTS.RESET_TABLE_DEVICE:
+            return {
+                ...state,
+                list: {
+                    data: []
+                }
+            }
         default:
             return state
     }
