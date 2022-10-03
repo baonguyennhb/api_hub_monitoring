@@ -110,7 +110,6 @@ export default class President extends Component {
                 serial: device.serial,
             }
         })
-
         return (
             <div className='main-container'>
                 <div className='title-page'>MANUALLY PUSH</div>
@@ -141,15 +140,15 @@ export default class President extends Component {
                                     <ApiOutlined />
                                     <span className='title-api-source'>API SOURCE </span>
                                     <Select
-                                        // defaultValue="lucy"
                                         style={{
                                             width: 386,
                                         }}
+                                        
                                         onChange={this.handleChange}
                                     >
                                         {
                                             apiSources.map(data => (
-                                                <Option key={data.id} value={data.id}>{data.connection_name}</Option>
+                                                <Option key={data.id} value={data.id} >{data.connection_name}</Option>
                                             ))
                                         }
                                     </Select>

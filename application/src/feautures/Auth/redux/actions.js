@@ -1,5 +1,6 @@
 import axios from 'axios'
 import * as CONSTANTS from './constants'
+import { pushMessageError } from '../../../layouts/Notification'
 
 export function login (params) {
     return dispatch => {
@@ -19,6 +20,8 @@ export function setTokenAction (data) {
     console.log(data)
     if(data.code === 200) {
         localStorage.setItem(CONSTANTS.ARG_TOKEN, JSON.stringify(data))
+    } else {
+        pushMessageError(data.message)
     }
     return {
         type: CONSTANTS.SET_TOKEN_ACTION,
@@ -28,6 +31,7 @@ export function setTokenAction (data) {
 export function clearToken() {
     console.log("Clear Token")
     localStorage.removeItem(CONSTANTS.ARG_TOKEN)
+    window.location.replace("/")
     return dispatch => {
         dispatch(clearTokenAction())
     }
