@@ -16,7 +16,7 @@ class FormApiSource extends Component {
         let { isModalVisible, handleOk, handleCancel, handleTestConnect, handleChangeUrl, onFinish,  data, isDetail } = this.props
         data = data !== undefined ? data : {}
 
-        const { connection_name, url, description, interval, check_connection_time, is_authorization } = data
+        const { connection_name, url, key_time, description, interval, check_connection_time, is_authorization } = data
         let title_form = isDetail ? "EDIT API SOURCE" : "CREATE A NEW API SOURCE"
         let isDisable = isDetail ? true : false
         return (
@@ -35,7 +35,7 @@ class FormApiSource extends Component {
                     <Form 
                         onFinish={onFinish}
                         ref={this.props.formRef}
-                        initialValues={{ connection_name: connection_name, url: url, description: description, interval: interval, check_connection_time: check_connection_time }}
+                        initialValues={{ connection_name: connection_name, url: url, key_time: key_time, description: description, interval: interval, check_connection_time: check_connection_time }}
                         layout="vertical"
                     >
                         <Form.Item label="Connection name" name="connection_name" rules={[
@@ -51,6 +51,13 @@ class FormApiSource extends Component {
                             },
                         ]}>
                             <Input placeholder="URL" onChange={handleChangeUrl} />
+                        </Form.Item>
+                        <Form.Item label="KEY PARAMS TIME" name="key_time" rules={[
+                            {
+                                required: true,
+                            },
+                        ]}>
+                            <Input placeholder="KEY PARAMS TIME" />
                         </Form.Item>
                         <Form.Item label="Interval Time" name="interval" rules={[
                             {

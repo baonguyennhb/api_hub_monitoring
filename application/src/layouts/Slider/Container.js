@@ -3,6 +3,7 @@ import President from './President'
 import { clearToken } from '../../feautures/Auth/redux/actions';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { loadStateFromLocal } from '../../feautures/Auth/redux/reducer';
 class Container extends Component {
   handleLogout = () => {
     console.log("Logout")
@@ -14,6 +15,7 @@ class Container extends Component {
     )
   }
 }
+
 
 function mapDispatchToProps(dispatch) {
   return {

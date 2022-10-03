@@ -7,25 +7,23 @@ import { connect } from 'react-redux'
 class Container extends Component {
 
     handleLogin = (data) => {
-        console.log(data)
         this.props.login({
-            email: data.username,
-            password: data.password
+            username: data.username !== undefined ? data.username : '',
+            password: data.password !== undefined ? data.password : '',
         })
     }
     render() {
         const auth = this.props.auth
         const user = auth.user
-        console.log(user)
-        if (user.email !== null) {
+        if (user.id !== null && user.id !== undefined) {
             return (
                 <Navigate to={"/api-source"} />
             )
         }
         return (
-
-            <President handleLogin={this.handleLogin} />
-
+            <President handleLogin={this.handleLogin}
+                loading={this.props.auth.login.loading}
+            />
         )
     }
 }

@@ -20,6 +20,7 @@ class Container extends Component {
       this.formRef.current.setFieldsValue({
         connection_name: value.connection_name,
         url: value.url,
+        key_time: value.key_time,
         description: value.description,
         interval: value.interval,
         check_connection_time: value.connection_time,

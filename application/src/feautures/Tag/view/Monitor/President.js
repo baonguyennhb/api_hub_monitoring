@@ -20,7 +20,7 @@ export default class President extends Component {
         key: 'index',
       },
       {
-        title: 'Time',
+        title: 'Time Call API',
         dataIndex: 'timestamp',
         key: 'time',
       },
@@ -38,6 +38,11 @@ export default class President extends Component {
         title: 'Value',
         dataIndex: 'value',
         key: 'value',
+      },
+      {
+        title: 'Time in API-Source',
+        dataIndex: 'time_in_api_source',
+        key: 'time_in_api_source',
       },
     ];
     return (

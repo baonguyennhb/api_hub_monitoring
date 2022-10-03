@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {
     ApiOutlined,
-    DashboardOutlined,
     CloudUploadOutlined,
     UserOutlined,
     LogoutOutlined,
@@ -15,6 +14,11 @@ const { Sider } = Layout;
 export default class President extends Component {
     render() {
         const path = window.location.pathname.split("/")[1]
+        //const {name} = this.props.auth.user
+        const userInfo = JSON.parse(localStorage.getItem("api_hub"))
+        const {name} = userInfo !== null ? userInfo.data : {name: null}
+        const lastName = name !== null ? name.split(" ") : []
+        const firstChar = lastName.length > 0 ?  (lastName[0])[0] : ""
         let defaultSelectedKeys
         switch (path) {
             case 'api-source':
@@ -66,9 +70,9 @@ export default class President extends Component {
                         <Menu.Item
                             key="account-user"
                             className='account-name'
-                            icon={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>B</Avatar>}
+                            icon={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{firstChar}</Avatar>}
                         >
-                            {'Nguyễn Hữu Bảo'}
+                            {name}
                         </Menu.Item>
                         <Menu.Item
                             className="account-logout"

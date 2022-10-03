@@ -29,7 +29,7 @@ export function reducer(state = initState, action) {
 export function loadStateFromLocal() {
     let stateFromLocal
     try {
-
+         // Load data from local
         let dataLocal = JSON.parse(localStorage.getItem(CONSTANTS.ARG_TOKEN))
         const {data, meta } = dataLocal
         stateFromLocal = {
