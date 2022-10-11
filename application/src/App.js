@@ -16,6 +16,7 @@ import { DataHubPage } from './feautures/DataHub/view/Index';
 import { MonitorTagPage } from './feautures/Tag/view/Monitor';
 import { MonitorLogTagPage } from './feautures/Tag/view/MonitorLog';
 import { ManualPushPage } from './feautures/ManualPush/view/Index';
+import { ExportAndImportPage } from './feautures/Export/view/Index';
 function App() {
   return (
     <Provider store={store}>
@@ -35,6 +36,7 @@ function App() {
           <Route path='/tags' element={<AppLayout><TagPage /></AppLayout>} />
           <Route path='/data-hub' element={<AppLayout>< DataHubPage /></AppLayout>} />
           <Route path='/push-manual' element={<AppLayout><ManualPushPage/></AppLayout>} />
+          <Route path='/config' element={<AppLayout><ExportAndImportPage/></AppLayout>} />
         </Routes>
       </Router>
     </Provider>

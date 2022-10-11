@@ -1,0 +1,2 @@
+export const PUSH_MANUAL = 'PUSH_MANUAL'
+export const PUSH_MANUAL_LOADING = 'PUSH_MANUAL_LOADING'

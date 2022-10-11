@@ -6,6 +6,7 @@ import {
     UserOutlined,
     LogoutOutlined,
     PieChartOutlined,
+    ExportOutlined
 } from '@ant-design/icons';
 import { AntAvatar } from "../AntAvatar";
 import { Layout, Menu, Space, Avatar } from 'antd';
@@ -16,9 +17,9 @@ export default class President extends Component {
         const path = window.location.pathname.split("/")[1]
         //const {name} = this.props.auth.user
         const userInfo = JSON.parse(localStorage.getItem("api_hub"))
-        const {name} = userInfo !== null ? userInfo.data : {name: null}
+        const { name } = userInfo !== null ? userInfo.data : { name: null }
         const lastName = name !== null ? name.split(" ") : []
-        const firstChar = lastName.length > 0 ?  (lastName[0])[0] : ""
+        const firstChar = lastName.length > 0 ? (lastName[0])[0] : ""
         let defaultSelectedKeys
         switch (path) {
             case 'api-source':
@@ -29,6 +30,9 @@ export default class President extends Component {
                 break;
             case 'push-manual':
                 defaultSelectedKeys = ['push-manual']
+                break
+            case 'config':
+                defaultSelectedKeys = ['config']
                 break
             default:
                 break;
@@ -50,6 +54,10 @@ export default class President extends Component {
                     <Menu.Item icon={<CloudUploadOutlined />} key="push-manual" className='side-item'>
                         MANUALLY - PUSH
                         <Link to="/push-manual" />
+                    </Menu.Item>
+                    <Menu.Item icon={<ExportOutlined />} key="config" className='side-item'>
+                        EXPORT & IMPORT CONFIG
+                        <Link to="/config" />
                     </Menu.Item>
                 </Menu>
                 <Menu
