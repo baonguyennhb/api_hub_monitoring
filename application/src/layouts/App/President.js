@@ -14,7 +14,7 @@ export default class President extends Component {
                         style={{
                             margin: '8px 16px',
                             padding: 0,
-                            minHeight: '91vh',
+                            minHeight: '95vh',
                         }}
                     >
                         {this.props.children}

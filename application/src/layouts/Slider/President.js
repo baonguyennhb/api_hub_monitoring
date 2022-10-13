@@ -6,14 +6,42 @@ import {
     UserOutlined,
     LogoutOutlined,
     PieChartOutlined,
-    ExportOutlined
+    ExportOutlined,
+    EditOutlined
 } from '@ant-design/icons';
 import { AntAvatar } from "../AntAvatar";
-import { Layout, Menu, Space, Avatar } from 'antd';
+import { Layout, Menu, Space, Avatar, Dropdown, Button } from 'antd';
 import './style.css'
 const { Sider } = Layout;
 export default class President extends Component {
     render() {
+        const menu = (
+            <Menu
+                items={[
+                    {
+                        key: '1',
+                        label: (
+                            <div onClick={this.props.handleEditAccount}>
+                                <Space size={"small"}>
+                                    <EditOutlined />
+                                    Edit Acount
+                                </Space>
+                            </div>
+                        ),
+                    },
+                    {
+                        key: '2',
+                        label: (
+                            <div onClick={this.props.handleLogout} >
+                                <Space size={'small'}>
+                                    <LogoutOutlined /> Logout
+                                </Space>
+                            </div>
+                        ),
+                    },
+                ]}
+            />
+        );
         const path = window.location.pathname.split("/")[1]
         //const {name} = this.props.auth.user
         const userInfo = JSON.parse(localStorage.getItem("api_hub"))
@@ -80,16 +108,19 @@ export default class President extends Component {
                             className='account-name'
                             icon={<Avatar style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{firstChar}</Avatar>}
                         >
-                            {name}
+
+                            <Dropdown overlay={menu} placement="bottomLeft">
+                                <div>{name}</div>
+                            </Dropdown>
                         </Menu.Item>
-                        <Menu.Item
+                        {/* <Menu.Item
                             className="account-logout"
                             key={3}
                             onClick={this.props.handleLogout}
                             icon={<LogoutOutlined />}
                         >
                             Logout
-                        </Menu.Item>
+                        </Menu.Item> */}
                     </Menu.ItemGroup>
                 </Menu>
             </Sider>

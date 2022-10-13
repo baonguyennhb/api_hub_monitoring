@@ -6,6 +6,7 @@
 
 .children-container .children-header {
     border-bottom: 1px solid rgb(194, 194, 194);
+    padding: 10px 0px;
 }
 
 .children-container .range-picker-container {
@@ -33,7 +34,7 @@
     right: 20px;
 }
 .children-container .table-metter-container {
-    padding: 10px 20px;
+    padding: 15px 20px;
 }
 .table-metter-container .title-table-add-device {
     font-size: 14px;

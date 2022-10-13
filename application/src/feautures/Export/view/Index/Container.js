@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import President from './President'
 import { pushMessageSuccess } from '../../../../layouts/Notification'
 import axios from 'axios'
+import {pushMessageError} from '../../../../layouts/Notification'
 import FileSaver from 'file-saver'
 
 class Container extends Component {
@@ -17,10 +18,14 @@ class Container extends Component {
         pushMessageSuccess("Download Config successfully!")
       })
   }
+  importConfig = () => {
+    pushMessageError("Tính năng đang được cập nhật, vui lòng chờ thêm 1 khoảng thời gian!!!!!!")
+  }
   render() {
     return (
       <President {...this.props}
         downloadConfig={this.downloadConfig}
+        importConfig = {this.importConfig}
       />
     )
   }

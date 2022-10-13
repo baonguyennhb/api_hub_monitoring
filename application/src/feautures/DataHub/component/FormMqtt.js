@@ -31,10 +31,10 @@ export default class FormMqtt extends Component {
                         <Form.Item label="GroupID" name="group_id">
                             <Input placeholder="Input GroupId" />
                         </Form.Item>
-                        <Form.Item label="HeartBeat" name="heart_beat">
+                        <Form.Item label="HeartBeat (s)" name="heart_beat">
                             <Input placeholder="Input HeartBeat" />
                         </Form.Item>
-                        <Form.Item label="Interval" name="interval">
+                        <Form.Item label="Interval (s)" name="interval">
                             <Input placeholder="Input Interval" />
                         </Form.Item>
                     </Col>

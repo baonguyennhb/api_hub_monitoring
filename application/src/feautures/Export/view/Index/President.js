@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { ImportOutlined, ExportOutlined, DownloadOutlined, UploadOutlined } from '@ant-design/icons';
 import './style.css'
 export default class President extends Component {
-
     render() {
         return (
             <div className='main-container'>
@@ -18,8 +17,13 @@ export default class President extends Component {
                     </div>
                     <div className='upload-container'>
                         <Space size={'middle'}>
-                            <Button icon={<DownloadOutlined />} type = 'primary' className='btn-upload'>DOWNLOAD SAMPLE TEMPLATE</Button>
-                            <Button icon={<UploadOutlined />} type = 'primary' className='btn-upload'>CLICK TO UPLOAD</Button>
+                            <Button icon={<DownloadOutlined />} type='primary' className='btn-upload'
+                                onClick={(e) => this.props.downloadConfig()}>
+                                DOWNLOAD SAMPLE TEMPLATE
+                            </Button>
+                            <Button icon={<UploadOutlined />} type='primary' className='btn-upload' onClick={(e) => this.props.importConfig()}>
+                                CLICK TO UPLOAD
+                            </Button>
                         </Space>
                     </div>
                 </div>

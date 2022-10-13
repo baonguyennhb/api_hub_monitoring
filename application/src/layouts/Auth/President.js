@@ -12,7 +12,6 @@ class President extends Component {
                     <div className="antd-pro-layouts-user-layout-top">
                         <div className="antd-pro-layouts-user-layout-header">
                             <Link to="/">
-                                {/* <img alt="" className="antd-pro-layouts-user-layout-logo" src={logo}/> */}
                                 <span className="antd-pro-layouts-user-layout-title">API - HUB</span>
                             </Link>
                         </div>
