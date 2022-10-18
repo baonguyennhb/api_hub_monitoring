@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-hub-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: api-hub-ui
+  template:
+    metadata:
+      labels:
+        component: api-hub-ui
+    spec:
+      containers:
+        - name: api-hub-ui
+          image: 192.168.196.28:5000/api-hub-ui:v1.0
+          ports:
+            - containerPort: 3000

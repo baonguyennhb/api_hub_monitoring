@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-hub1-ui-node-port
+  name: api-hub-ui-service
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-    - port: 3051
-      targetPort: 80
-      nodePort: 31000
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
   selector:
-    component: web-ui
+    component: api-hub-ui

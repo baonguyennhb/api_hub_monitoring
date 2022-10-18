@@ -1,5 +1,6 @@
 # 1. For Nginx setup
 FROM nginx:alpine
+EXPOSE 3000
 # 2. Copy config nginx
 COPY /nginx/nginx.conf /etc/nginx/conf.d/default.conf
 WORKDIR /usr/share/nginx/html
