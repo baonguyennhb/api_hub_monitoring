@@ -37,36 +37,36 @@ export default class President extends Component {
                 dataIndex: 'tag_type',
                 key: 'tag_type',
             },
-            {
-                title: 'Deadband',
-                dataIndex: 'Deadband',
-                key: 'Deadband',
-            },
-            {
-                title: 'Deadband Type',
-                dataIndex: 'deadband_type',
-                key: 'deadband_type',
-            },
-            {
-                title: 'Span High',
-                dataIndex: 'span_high',
-                key: 'span_high',
-            },
-            {
-                title: 'Span Low',
-                dataIndex: 'span_low',
-                key: 'span_low',
-            },
-            {
-                title: 'Decimal Digits',
-                dataIndex: 'decimal_digits',
-                key: 'decimal_digits',
-            },
-            {
-                title: 'Description',
-                dataIndex: 'description',
-                key: 'description',
-            },
+            // {
+            //     title: 'Deadband',
+            //     dataIndex: 'Deadband',
+            //     key: 'Deadband',
+            // },
+            // {
+            //     title: 'Deadband Type',
+            //     dataIndex: 'deadband_type',
+            //     key: 'deadband_type',
+            // },
+            // {
+            //     title: 'Span High',
+            //     dataIndex: 'span_high',
+            //     key: 'span_high',
+            // },
+            // {
+            //     title: 'Span Low',
+            //     dataIndex: 'span_low',
+            //     key: 'span_low',
+            // },
+            // {
+            //     title: 'Decimal Digits',
+            //     dataIndex: 'decimal_digits',
+            //     key: 'decimal_digits',
+            // },
+            // {
+            //     title: 'Description',
+            //     dataIndex: 'description',
+            //     key: 'description',
+            // },
             {
                 title: 'Action',
                 key: "action",
