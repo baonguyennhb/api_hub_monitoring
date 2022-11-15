@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-hub-ui-deployment
+  name: api-hub-ui
 spec:
   replicas: 1
   selector:
@@ -14,6 +14,15 @@ spec:
     spec:
       containers:
         - name: api-hub-ui
-          image: 192.168.196.28:5000/api-hub-ui:v1.6
+          # image: 118.70.80.38:5000/api-hub-ui:v1.0.4
+          image: harbor.wise-paas.io/library/api-hub-ui:v-1.0.3
+          resources:
+            limits:
+              cpu: "8"
+              memory: 1024Mi
+              ephemeral-storage: 128Mi
+            requests:
+              cpu: "2"
+              memory: 512Mi
           ports:
             - containerPort: 3010

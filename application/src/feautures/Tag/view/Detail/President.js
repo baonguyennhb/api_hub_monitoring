@@ -61,7 +61,7 @@ export default class President extends Component {
         key: 'action',
         width: '10%',
         render: (record) => (
-          <Space size="middle">
+          <Space size="small">
             <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
             <Button type='danger' onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
           </Space>
