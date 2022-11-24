@@ -68,7 +68,7 @@ class Container extends Component {
       <>
         <President {...this.props}
           handleDelete={this.handleDelete}
-          connection={this.props.apiSource.detail.data.connection_name}
+          connection={this.props.apiSource.detail.data?.connection_name}
           showModal={this.showModal}
         />
         <FormDevice {...this.props}

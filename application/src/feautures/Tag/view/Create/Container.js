@@ -15,7 +15,7 @@ class Container extends Component {
     };
     showModal = () => {
         this.setState({
-            isModalVisible: true
+            isModalVisible: true,
         })
     };
     handleOk = () => {
@@ -27,9 +27,11 @@ class Container extends Component {
     onFinish = (value) => {
         const metterId =  window.location.pathname.split("/")[3] 
         const api_source = window.location.pathname.split("/")[2] 
+        const metterObjectId = this.props.device.detail?.data?.id
         const newTag = {
             ...value,
             metterId: metterId,
+            metterObjectId: metterObjectId,
             apiSource : api_source
         }
         console.log(newTag)
@@ -71,7 +73,8 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
     return {
-        tags: state.tag
+        tags: state.tag,
+        device: state.device
     }
 }
 

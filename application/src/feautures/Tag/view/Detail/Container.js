@@ -3,6 +3,7 @@ import { notification } from 'antd';
 import President from './President'
 import { fetchingTableTag, updateTag } from '../../redux'
 import { fetchingDetailApiSource } from '../../../ApiSource/redux'
+import { fetchingDetailDevice } from '../../../Devices/redux';
 import { deleteTag } from '../../redux'
 import { connect } from 'react-redux'
 import FormTag from '../../component/FormTag'
@@ -40,6 +41,7 @@ class Container extends Component {
     const params = { metterId: window.location.pathname.split("/")[3], apiSourceId:  window.location.pathname.split("/")[2]}
     this.props.fetchingTableTag(params)
     this.props.fetchingDetailApiSource(api_source_id)
+    this.props.fetchingDetailDevice(params)
   }
   componentDidUpdate(prevProps) {
     if (prevProps.tags.reload !== this.props.tags.reload && this.props.tags.reload) {
@@ -114,6 +116,9 @@ function mapDispatchToProps(dispatch) {
     fetchingDetailApiSource: (id) => {
       dispatch(fetchingDetailApiSource(id))
     },
+    fetchingDetailDevice: (id) => {
+      dispatch(fetchingDetailDevice(id))
+    },
     updateTag: (tag) => {
       dispatch(updateTag(tag))
     }
@@ -122,7 +127,8 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     tags: state.tag,
-    apiSource: state.apiSource
+    apiSource: state.apiSource,
+    device: state.device
   }
 }
 export default (connect(mapStateToProps, mapDispatchToProps)(Container))
