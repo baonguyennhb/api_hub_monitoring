@@ -1,7 +1,7 @@
 import { Button, Col, Row, Space, Table, Tooltip, Modal, Tabs, Tag } from 'antd'
 import React, { Component } from 'react'
 import FormMqtt from '../../component/FormMqtt'
-import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined, DisconnectOutlined, ControlOutlined, SyncOutlined } from '@ant-design/icons';
+import { SettingOutlined, TagsOutlined, ExclamationCircleOutlined, EditOutlined, DeleteOutlined, DownloadOutlined, DisconnectOutlined, ControlOutlined, SyncOutlined, SaveOutlined } from '@ant-design/icons';
 import './style.css'
 import { AddTag } from '../AddTag';
 import { DeleteConfig } from '../DeleteTag';
@@ -119,6 +119,7 @@ export default class President extends Component {
                                 </div>
                                 <div className='form'>
                                     <FormMqtt data={data} formRef={this.props.formRef} onFinish={this.props.onFinish} />
+                                    <Button type='primary' className='btn-save-data-hub' onClick={this.props.handleUpdateDataHub}><SaveOutlined />Save</Button>
                                 </div>
                             </div>
                         </TabPane>

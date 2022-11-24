@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig, connectDataHub, disconnectDataHub, getStatusConnectDataHub } from '../../redux'
+import { fetchingDetailDataHub, fetchingTableTagMqtt, removeTag, downloadConfig, connectDataHub, disconnectDataHub, getStatusConnectDataHub, updateDataHub } from '../../redux'
 import President from './President'
 
 class Container extends Component {
@@ -8,6 +8,9 @@ class Container extends Component {
   state = {
     data: {},
     loading: false
+  }
+  handleUpdateDataHub = () => {
+    this.formRef.current.submit()
   }
   handleDownloadConfigMqtt = () => {
     this.setState({
@@ -23,14 +26,16 @@ class Container extends Component {
   }
   handleConnectDataHub = () => {
     console.log("Connect Action")
-    this.formRef.current.submit()
+    this.props.connectDataHub()
+    //this.formRef.current.submit()
   }
   handleDisConnectDataHub = () => {
     this.props.disconnectDataHub()
   }
   onFinish = (value) => {
     console.log("SubmitForm")
-    this.props.connectDataHub(value)
+    console.log(value)
+    this.props.updateDataHub(value)
   }
   handleRemoveTag = (data) => {
     this.props.removeTag({id: data.id})
@@ -70,6 +75,7 @@ class Container extends Component {
         onFinish = {this.onFinish}
         handleConnectDataHub = {this.handleConnectDataHub}
         handleDisConnectDataHub = {this.handleDisConnectDataHub}
+        handleUpdateDataHub = {this.handleUpdateDataHub}
         statusDataHub = {this.props.data_hub.status.data?.data}
       />
     )
@@ -98,6 +104,9 @@ export function mapDispatchToProps(dispatch) {
     },
     getStatusConnectDataHub: () => {
       dispatch(getStatusConnectDataHub())
+    },
+    updateDataHub: (data) => {
+      dispatch(updateDataHub(data))
     }
   }
 }

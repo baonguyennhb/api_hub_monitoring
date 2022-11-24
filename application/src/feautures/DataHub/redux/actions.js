@@ -1,8 +1,8 @@
-import * as CONSTANTS  from './constants'
+import * as CONSTANTS from './constants'
 import axios from 'axios'
 import { pushMessageError, pushMessageSuccess, pushMessageLoading } from "../../../layouts/Notification"
 
-export function fetchingDetailDataHub(){
+export function fetchingDetailDataHub() {
     return dispatch => {
         dispatch(fetchingDetailLoadingAction())
         axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/detail")
@@ -26,15 +26,17 @@ export function fetchingDetailLoadingAction() {
 
 // Update Data Hub
 
-export function updateDataHub (params) {
+export function updateDataHub(params) {
     return dispatch => {
         dispatch(updateActionLoading())
-        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/api-source/edit", params, { params : {id: params.id}})
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/edit", params)
             .then(res => dispatch(updateAction(res)))
+            .catch(error => pushMessageError(error.response.data.error))
     }
 }
 
 export function updateAction(res) {
+    console.log("Ok")
     if (res.data.code === 200) {
         pushMessageSuccess("Update DataHub Sucessfully!")
     }
@@ -76,7 +78,7 @@ export function fetchingLoadingAction() {
 // Feching All Tag 
 
 //Add Tag To Mqtt Table
-export function addTag (params) {
+export function addTag(params) {
     return dispatch => {
         dispatch(addTagActionLoading())
         axios.post(process.env.REACT_APP_BASE_URL + '/api/v1/data-hub/add/tag', params)
@@ -108,7 +110,7 @@ export function addTagAction(response) {
 export function removeTag(params) {
     return dispatch => {
         dispatch(deleteActionLoading())
-        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove/tag", params = {params})
+        axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove/tag", params = { params })
             .then(res => dispatch(deleteAction(res)))
     }
 }
@@ -124,7 +126,7 @@ export function deleteAction(response) {
 }
 export function deleteActionLoading() {
     return {
-        type:CONSTANTS.REMOVE_TAG_LOADING,
+        type: CONSTANTS.REMOVE_TAG_LOADING,
         payload: {}
     }
 }
@@ -152,7 +154,7 @@ export function downloadAction(response) {
 }
 export function downloadActionLoading() {
     return {
-        type:CONSTANTS.DOWNLOAD_CONFIG_LOADING,
+        type: CONSTANTS.DOWNLOAD_CONFIG_LOADING,
         payload: {}
     }
 }
@@ -162,7 +164,7 @@ export function downloadActionLoading() {
 export function deleteTagConfig(params) {
     return dispatch => {
         dispatch(deleteConfigActionLoading())
-        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove-config/tag", params )
+        axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/remove-config/tag", params)
             .then(res => dispatch(deleteConfigAction(res)))
     }
 }
@@ -180,16 +182,16 @@ export function deleteConfigAction(response) {
 }
 export function deleteConfigActionLoading() {
     return {
-        type:CONSTANTS.DELETE_TAG_CONFIG_LOADING,
+        type: CONSTANTS.DELETE_TAG_CONFIG_LOADING,
         payload: {}
     }
 }
 
-export function connectDataHub (params) {
+export function connectDataHub(params) {
     return dispatch => {
         dispatch(connectDataHubActionLoading())
         axios.post(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/connect", params)
-        .then(res => dispatch(connectDataHubAction(res)))
+            .then(res => dispatch(connectDataHubAction(res)))
     }
 }
 
@@ -212,11 +214,11 @@ export function connectDataHubActionLoading() {
     }
 }
 
-export function disconnectDataHub () {
+export function disconnectDataHub() {
     return dispatch => {
         dispatch(disconnectDataHubActionLoading())
         axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/disconnect")
-        .then(res => dispatch(disconnectDataHubAction(res)))
+            .then(res => dispatch(disconnectDataHubAction(res)))
     }
 }
 
@@ -239,10 +241,10 @@ export function disconnectDataHubActionLoading() {
     }
 }
 
-export function getStatusConnectDataHub () {
+export function getStatusConnectDataHub() {
     return dispatch => {
         axios.get(process.env.REACT_APP_BASE_URL + "/api/v1/data-hub/connect")
-        .then(res => dispatch(getStatusConnectDataHubAction(res)))
+            .then(res => dispatch(getStatusConnectDataHubAction(res)))
     }
 }
 

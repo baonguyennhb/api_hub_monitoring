@@ -41,6 +41,9 @@
 .form .ant-form-item {
     margin-bottom: 8px;
 }
+.form .btn-save-data-hub {
+    margin-top: 10px;
+}
 
 .children-container .table-tag-mqtt {
     background: white;
