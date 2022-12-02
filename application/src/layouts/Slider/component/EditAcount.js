@@ -4,12 +4,12 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 const { TextArea } = Input;
 class FormUser extends Component {
     render() {
-        let { isModalVisible, handleOk, handleCancel, onFinish, data } = this.props
+        let { isEdit, isModalVisible, handleOk, handleCancel, onFinish, data } = this.props
         data = data !== undefined ? data : {}
         const userInfo = JSON.parse(localStorage.getItem("api_hub"))
         const { name, username } = userInfo !== null ? userInfo.data : { name: null, username: null }
         //const { metter_id, serial, model, description, interval } = data
-        let title_form = "EDIT ACOUNT"
+        let title_form = isEdit? "EDIT ACOUNT" : "CREATE ACCOUNT"
         return (
             <>
                 <Modal title={title_form} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} >

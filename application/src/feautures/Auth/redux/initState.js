@@ -5,7 +5,8 @@ const initState = {
         email       : null,
     },
     meta: {
-        token: null
+        token: null,
+        role: null
     },
     login:{
         loading: false,

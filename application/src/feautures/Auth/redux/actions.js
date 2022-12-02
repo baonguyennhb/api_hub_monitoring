@@ -46,7 +46,24 @@ export function clearTokenAction() {
 export function editAccount(params) {
     const { userId, name, username, password } = params
     axios
-        .post(process.env.REACT_APP_BASE_URL + `/api/v1/user/${userId}`, { name: name, username: username, password: password })
+        .put(process.env.REACT_APP_BASE_URL + `/api/v1/user/${userId}`, { name: name, username: username, password: password })
+        .then(res => {
+            if (res.data.code === 200) {
+                pushMessageSuccess(res.data.message)
+                setTimeout(() => {
+                    window.location.replace("/")
+                }, 1500)
+                localStorage.removeItem(CONSTANTS.ARG_TOKEN)
+            } else {
+                pushMessageError(res.data.error)
+            }
+        })
+}
+export function createAccount(params) {
+    console.log(params)
+    const { name, username, password } = params
+    axios
+        .post(process.env.REACT_APP_BASE_URL + `/api/v1/user/add`, { name: name, username: username, password: password })
         .then(res => {
             if (res.data.code === 200) {
                 pushMessageSuccess(res.data.message)

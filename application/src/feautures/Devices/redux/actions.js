@@ -127,6 +127,7 @@ export function deleteDevice(params) {
         dispatch(deleteActionLoading())
         axios.delete(process.env.REACT_APP_BASE_URL + "/api/v1/device/delete", params = {params})
             .then(res => dispatch(deleteAction(res)))
+            .catch(error => pushMessageError(error.response.data.error))
     }
 } 
 

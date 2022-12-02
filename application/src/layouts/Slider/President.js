@@ -15,36 +15,50 @@ import './style.css'
 const { Sider } = Layout;
 export default class President extends Component {
     render() {
+        const userInfo = JSON.parse(localStorage.getItem("api_hub"))
+        const meta = userInfo?.meta
+        const role = meta?.role
+        let itemsMenu = [{
+            key: '1',
+            label: (
+                <div onClick={this.props.handleEditAccount}>
+                    <Space size={"small"}>
+                        <EditOutlined />
+                        Edit Acount
+                    </Space>
+                </div>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <div onClick={this.props.handleLogout} >
+                    <Space size={'small'}>
+                        <LogoutOutlined /> Logout
+                    </Space>
+                </div>
+            ),
+        }]
+        if (role === "AD") {
+            itemsMenu.push({
+                key: '0',
+                label: (
+                    <div onClick={this.props.handleCreateAccount}>
+                        <Space size={"small"}>
+                            <EditOutlined />
+                            Create Acount
+                        </Space>
+                    </div>
+                ),
+            },)
+        }
         const menu = (
             <Menu
-                items={[
-                    {
-                        key: '1',
-                        label: (
-                            <div onClick={this.props.handleEditAccount}>
-                                <Space size={"small"}>
-                                    <EditOutlined />
-                                    Edit Acount
-                                </Space>
-                            </div>
-                        ),
-                    },
-                    {
-                        key: '2',
-                        label: (
-                            <div onClick={this.props.handleLogout} >
-                                <Space size={'small'}>
-                                    <LogoutOutlined /> Logout
-                                </Space>
-                            </div>
-                        ),
-                    },
-                ]}
+                items={itemsMenu}
             />
         );
         const path = window.location.pathname.split("/")[1]
         //const {name} = this.props.auth.user
-        const userInfo = JSON.parse(localStorage.getItem("api_hub"))
         const { name } = userInfo !== null ? userInfo.data : { name: null }
         const lastName = name !== null ? name.split(" ") : []
         const firstChar = lastName.length > 0 ? (lastName[0])[0] : ""

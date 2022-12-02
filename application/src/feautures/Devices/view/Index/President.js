@@ -70,8 +70,8 @@ export default class President extends Component {
         width: '10%',
         render: (record) => (
           <Space size="small">
-            <Button type='primary' onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
-            <Button type='danger' onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
+            <Button type='primary'  onClick={(e) => this.props.showModal(record)} icon={<EditOutlined />} >Edit</Button>
+            <Button type='danger'  onClick={(e) => this.confirm(record)} icon={<DeleteOutlined />}>Delete</Button>
           </Space>
         ),
       },

@@ -85,13 +85,12 @@ export default class President extends Component {
         return (
             <div className='main-container'>
                 <Row>
-                    <Col span={12}>
+                    <Col sm={24} xl={12}>
                         <div className='title-page'>DATA - HUB CONFIGURATION</div>
                     </Col>
-                    <Col span={12}>
+                    <Col sm={24} xl={12}>
                         <div className='group-btn'>
                             <Space size={"small"}>
-                                <label>Status:</label>
                                 {
                                     (this.props.statusDataHub) ? (
                                         <Tag className='tag' color="green" icon={<SyncOutlined spin />}>CONNECTED</Tag>

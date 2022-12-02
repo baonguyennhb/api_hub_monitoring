@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { loadStateFromLocal } from '../../feautures/Auth/redux/reducer';
 import FormUser from './component/EditAcount';
-import { editAccount } from '../../feautures/Auth/redux/actions';
+import { editAccount, createAccount } from '../../feautures/Auth/redux/actions';
 class Container extends Component {
   formRef = React.createRef()
   state = {
     isModalVisible: false,
+    isEdit: false
   }
   handleLogout = () => {
     console.log("Logout")
@@ -17,7 +18,14 @@ class Container extends Component {
   }
   handleEditAccount = () => {
     this.setState({
-      isModalVisible: true
+      isModalVisible: true,
+      isEdit: true
+    })
+  }
+  handleCreateAccount = () => {
+    this.setState({
+      isModalVisible: true,
+      isEdit: false
     })
   }
   handleCancel = () => {
@@ -26,12 +34,16 @@ class Container extends Component {
     })
   }
   onFinish = (value) => {
-    const userInfo = JSON.parse(localStorage.getItem("api_hub"))
-    let userEdit = {
-      ...value,
-      userId: userInfo?.data?.id
+    if (this.state.isEdit) {
+      const userInfo = JSON.parse(localStorage.getItem("api_hub"))
+      let userEdit = {
+        ...value,
+        userId: userInfo?.data?.id
+      }
+      editAccount(userEdit)
+    } else {
+      createAccount(value)
     }
-    editAccount(userEdit)
   }
   handleOk = () => {
     this.formRef.current.submit()
@@ -42,8 +54,10 @@ class Container extends Component {
         <President {...this.props}
           handleLogout={this.handleLogout}
           handleEditAccount={this.handleEditAccount}
+          handleCreateAccount={this.handleCreateAccount}
         />
         <FormUser
+          isEdit={this.state.isEdit}
           isModalVisible={this.state.isModalVisible}
           handleCancel={this.handleCancel}
           formRef={this.formRef}

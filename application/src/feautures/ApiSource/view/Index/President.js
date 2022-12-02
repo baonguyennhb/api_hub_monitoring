@@ -18,7 +18,6 @@ export default class President extends Component {
     };
     render() {
         const { data } = this.props?.apiSources.list
-        console.log(data)
         const dataSource = data.map((value, index) => {
             return {
                 index: index + 1,

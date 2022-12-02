@@ -39,7 +39,8 @@ export function loadStateFromLocal() {
                 email: data.email
             },
             meta: {
-                token: meta.token
+                token: meta.token,
+                role: meta.role
             }
         }
     } catch (error) {
@@ -51,7 +52,8 @@ export function loadStateFromLocal() {
                 email: null
             },
             meta: {
-                token: null
+                token: null,
+                role: null
             },
            
         }
